@@ -15,12 +15,12 @@ const Search = React.createClass({
     return (
       <div>
         <div>
-          <input type="search" ref="searchText" className="search" placeholder="rechercher les acivites" onChange={this.handleOnSearch} />
+          <input type="search" ref="searchText" className="search2" placeholder="rechercher les activités" onChange={this.handleOnSearch} />
         </div>
         <div>
-          <label>
+          <label className="oldStuff">
             <input type="checkbox" className="check" ref="showCompleted" onChange={this.handleOnSearch}/>
-            Affiche les activites completees.
+            Affiche seulement les activités non-completées.
           </label>
         </div>
       </div>

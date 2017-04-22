@@ -54,7 +54,7 @@ TweenMax.set($('.notes'), {
 //   opacity: 1,
 //   ease: Power4.easeOut
 // });
-TweenMax.to($('.notes'), 2, {
+TweenMax.to($('.notes'), 0.7, {
 
     // scale: 1,
   opacity: 1,

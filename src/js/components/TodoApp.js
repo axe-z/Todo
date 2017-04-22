@@ -7,56 +7,52 @@ import AddTodo from "./AddTodo"
 import Todo from "./Todo"
 import TodoList from "./TodoList"
 import Search from "./Search"
+let TodoAPI = require('../api/TodoAPI');
 
 const TodoApp = React.createClass({
   getInitialState(){
     return {
       showCompleted: false,  ///pas de crochet
       searchText: '',
-      todos: [
-        {
-          id: uuid(),
-          text: 'Donner a manger a Sardgio'
-        },
-        {
-          id: uuid(),
-          text: 'Sortir les vidanges le Jeudi soir'
-        },
-        {
-          id: uuid(),
-          text: 'Apprendre React'
-        },
-        {
-          id: uuid(),
-          text: 'Vivre la solitude completement'
-        },
-        {
-          id: uuid(),
-          text: 'Canadiens vs Rangers sur TVA'
-        },
-      ]
+      todos: TodoAPI.getTodos()
+
     }
+  },
+  componentDidUpdate(){
+    TodoAPI.setTodos(this.state.todos)
   },
   componentDidMount(){  ///est semblable a componentWillMount, will ne trouveras pas le node
     let node =  findDOMNode(this);  ///retourne tout le div.
     TweenMax.set(node, { filter: 'blur(0px)'})
     var tl = new TimelineMax({paused: true});
-    tl.from(node,2,{
-      opacity: 0,  x:  -10,  delay: 0.9,  filter: 'blur(5px)', rotationY: 0, y: 300, scale: 2, ease: Expo.easeOut
-    }).play()
+    tl.from(node,2,{  opacity: 0,  x:  -10,  delay: 1,  filter: 'blur(2px)', y: 300, scale: 2, ease: Expo.easeOut
+  }).play()
  },
-  handleAddTodo(text){
+  handleAddTodo(text){  //passe par addtodo
     this.setState({
       todos: [
         ...this.state.todos,
         {
           id: uuid(),
-          text: text
+          text: text,
+          completed: false
         }
       ]
     })
   },
-  handleSearch(showCompleted,searchText){
+  handleToggle(id){    ///passe par toto et todolist
+  // console.log(id)
+   let updatedTodos = this.state.todos.map((todo) => {
+       if(todo.id === id ){
+         todo.completed = !todo.completed
+       }
+     return todo;
+   })
+   this.setState({
+     todos: updatedTodos
+   })
+  },
+  handleSearch(showCompleted,searchText){ ///passe par search
     console.log(showCompleted,searchText)
     this.setState({
       showCompleted: showCompleted,  ///on fait ca pour le mettre sur le state, et pouvoir l utiliser ailleurs
@@ -66,11 +62,13 @@ const TodoApp = React.createClass({
   render() {
 let { todos } = this.state
     return (
-      <div className="component">
-        <h1>Todo App</h1>
-        <Search onSearch={this.handleSearch}/>
-        <TodoList todos={todos}/>
-        <AddTodo onAddTodo={this.handleAddTodo}/>
+      <div className="component ">
+        <div className="apptodo">
+          <h2>AXEZIVITÉS</h2>
+          <Search onSearch={this.handleSearch}/>
+          <TodoList todos={todos} onToggle={this.handleToggle}/>
+          <AddTodo onAddTodo={this.handleAddTodo}/>
+        </div>
       </div>
     )
   }

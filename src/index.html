@@ -519,12 +519,36 @@ voir code dans app.js
   <li>np  install node-uuid --save-dev . ET maintenant partout ou on veut un id , on met uuid ()</li>
   <li>sur la page qu on l utilise on doit METTRE : importe uuid de 'node-uuid' , on peut pas mettre de -</li>
   <li>Plus besoin de jamais y penser, le petit pluggin s assure de jamais repeter, y va avec le temps.</li>
+
+</div>
+
+<div class="section">
+  <h2>Sauvegarder les donnees, sans base de donnee ( localstorage )</h2>
+  <li>il est preferable de gerer ce qui est base de donnees sur un autre fichier, celle -ci n a pas vraiment avoir avec le fonctionnement directe de l app, et pourrait changer a tout temps.</li>
+  <li>Donc dans le rep API, on fait le todoapi</li>
+  <li>donc dans le inoitial state, au lieu d avoir le gros array, todos, va appeler Todo api . gettodos ()</li>
+  <li>Maintenant pour sauvergarder les changements, quand il y en a, on utilise un des lifecycles, qui se lance a chaque update: componentDidUpdate et lancer todoapi . setTodos () enlui passant l arr de todos, pour savoir quoi regarder et sauvegarder.</li>
+  <li>le probleme est que localstorage ne prend que des strings , il prend pas des arrays ....</li>
+  <li>Donc on doit utiliser JSON.stringify (arr) pour transformer en string l array todos</li>
+  <li>maintenant notre programme a besoin d un array, donc avec le string receuilli par getitem, et le stringg recu, il faut refaire un array.</li>
+  <li>JSON.parse est la solution, maintenant, ca peut chier , si le data est pas bon. donc , mieux vaut le faire dans un try catch block, pour s assurer que tout ce passe bien et capter les erreures .</li>
+  <li>Rappel : JSON.stringify, transforme un arr en string, JSON.parse, fait le contraire !</li>
   <pre><code>
+  localstorage 3 mains methodes
+
+  getItem
+  setItem
+  removeItem
+  ls.setItem('plan1', 'chien');
+  ls.getItem('plan1') === chien
+  ls.removeItem('plan1')  === ''
+
+  stringTodos avec 2 item ressemble a ca avant le parse : "[{"id":"b7401611-1b85-4f33-81c2-05dfa04417c9","text":"lavage du linge sale","completed":false},{"id":"71ac0b93-b624-4fa1-b1ba-946f2b914c80","text":"faire a souper","completed":false}]"
+
+
 
   </code></pre>
 </div>
-
-
 
 
 

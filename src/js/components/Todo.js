@@ -6,11 +6,19 @@ const { render, findDOMNode  } = ReactDOM;
 
 const Todo = React.createClass({
   render() {
- let { id, text } = this.props
+ let { id, text, completed } = this.props
 
     return (
-      <div>
-        <h4><span>{id} . </span> {text}</h4>
+      <div className="millieu"/* onClick={() => {    //au lieu de faire un function en haut de render, qui va envoyer a todoapp onToggle,
+        this.props.onToggle(id)  //on fait une simple fn sans nom. ca marche aussi, on aurait pu faire une fn aussi.
+        }}*/>
+        <label className='todo'>
+          <input type="checkbox" checked={completed}  onChange={() => {    //au lieu de faire un function en haut de render, qui va envoyer a todoapp onToggle,
+            this.props.onToggle(id)  //on fait une simple fn sans nom. ca marche aussi, on aurait pu faire une fn aussi.
+          }}/>
+          {text}
+        </label>
+        {/* <p>{text}</p> */}
       </div>
     )
   }
