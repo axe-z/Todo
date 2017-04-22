@@ -6,9 +6,11 @@ const { render, findDOMNode  } = ReactDOM;
 
 const Todo = React.createClass({
   render() {
+ let { id, text } = this.props
+
     return (
       <div>
-        <h3>Todo</h3>
+        <h4><span>{id} . </span> {text}</h4>
       </div>
     )
   }

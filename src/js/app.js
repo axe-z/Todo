@@ -81,7 +81,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import _ from 'lodash';
  require('bootstrap-sass')
 
-
+import TodoApp from "./components/TodoApp"
 import AddTodo from "./components/AddTodo"
 import Todo from "./components/Todo"
 import TodoList from "./components/TodoList"
@@ -89,13 +89,11 @@ import Search from "./components/Search"
 
 
  render (
-  <div className="component">
-    <h1>To doo App</h1>
-    <Search />
-    <Todo />
-    <TodoList />
-    <AddTodo  />
-  </div>
+   <Router history={hashHistory}>
+     <Route path="/" component={ TodoApp }>
+       <IndexRoute  component={TodoApp} />
+     </Route>
+   </Router>
 ,document.getElementById('MainInterface')
   )
 
