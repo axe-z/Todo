@@ -34,6 +34,11 @@ const TodoApp = React.createClass({
       ]
     }
   },
+  handleAddTodo(text){
+  //  alert('new todo:' + text);
+    let newTodo = text;
+    console.log(newTodo)
+  },
   componentDidMount(){  ///est semblable a componentWillMount, will ne trouveras pas le node
     let node =  findDOMNode(this);  ///retourne tout le div.
     TweenMax.set(node, { filter: 'blur(0px)'})
@@ -50,7 +55,7 @@ let { todos } = this.state
         <h1>Todo App</h1>
 
         <TodoList todos={todos}/>
-
+        <AddTodo onAddTodo={this.handleAddTodo}/>
       </div>
     )
   }
