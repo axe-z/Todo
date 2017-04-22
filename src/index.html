@@ -487,8 +487,42 @@ importer
   </code></pre>
 </div>
 
+<div class="section">
+  <h2>Revue du Spread operator de ES6</h2>
+  <li>il est possible d'appeler une function avec comme arguments, un array, un array spreader</li>
+  <li>comment ajouter a notre arr todos, prendra cette recette</li>
+  <pre><code>
+voir code dans app.js
+  </code></pre>
+</div>
+
+<div class="section">
+  <h2>Comment ajouter ud data  a notre arr todos, </h2>
+  <li>on doit spreader this.state.todos et non pas pas juste todos.. </li>
+  <li>voir le code , et that 's it ! , on fait ca dans la function qui recoit le text.</li>
+  <pre><code>
+   set State({
+      todos: [
+        ...this.state.todos, ///ca donne ce qu on a deja avec le spread
+        {                     // et on ajoute un objet de plus a l array d'obj !!!
+          id: uuid(),      ///nous donne un id unique
+          text: text       //le texte est rece de l unpit et passer a handl Add todo
+        }
+      ]
+    })
+  </code></pre>
+</div>
 
 
+<div class="section">
+  <h2>Comment creer un id, toujours unique avec node-uuid</h2>
+  <li>np  install node-uuid --save-dev . ET maintenant partout ou on veut un id , on met uuid ()</li>
+  <li>sur la page qu on l utilise on doit METTRE : importe uuid de 'node-uuid' , on peut pas mettre de -</li>
+  <li>Plus besoin de jamais y penser, le petit pluggin s assure de jamais repeter, y va avec le temps.</li>
+  <pre><code>
+
+  </code></pre>
+</div>
 
 
 

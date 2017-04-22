@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 const { render, findDOMNode  } = ReactDOM;
+import uuid from 'node-uuid';
 
 import AddTodo from "./AddTodo"
 import Todo from "./Todo"
@@ -14,23 +15,23 @@ const TodoApp = React.createClass({
       searchText: '',
       todos: [
         {
-          id: 1,
+          id: uuid(),
           text: 'Donner a manger a Sardgio'
         },
         {
-          id: 2,
+          id: uuid(),
           text: 'Sortir les vidanges le Jeudi soir'
         },
         {
-          id: 3,
+          id: uuid(),
           text: 'Apprendre React'
         },
         {
-          id: 4,
+          id: uuid(),
           text: 'Vivre la solitude completement'
         },
         {
-          id: 5,
+          id: uuid(),
           text: 'Canadiens vs Rangers sur TVA'
         },
       ]
@@ -45,9 +46,15 @@ const TodoApp = React.createClass({
     }).play()
  },
   handleAddTodo(text){
-  //  alert('new todo:' + text);
-    let newTodo = text;
-    console.log(newTodo)
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        {
+          id: uuid(),
+          text: text
+        }
+      ]
+    })
   },
   handleSearch(showCompleted,searchText){
     console.log(showCompleted,searchText)

@@ -97,6 +97,41 @@ import Search from "./components/Search"
 ,document.getElementById('MainInterface')
   )
 
+  //=================================================================================================================================
+// es6 spread operator video 92
+
+// function add( a, b){
+//  return a + b;
+// }
+// console.log(add(3,1)) //4
+// ///si on veux utliser toadd comme chiffre
+// let toAdd = [9,5]
+//
+// //vieille maniere
+// console.log(add(toAdd[0],toAdd[1])) //14
+//
+// //es6 spread
+// console.log(add(...toAdd)) //14
+//
+//
+// let groupeA = ['bob', 'ben']
+// let groupeB = ['dje', 'seb']
+// let groupeC = [...groupeA, ...groupeB]
+// console.log(groupeC) //["bob", "ben", "dje", "seb"]
+//
+// let person = ['ben' , 40]
+//
+// function greet(name,age){
+//   return `bonjour je suis ${name} et j'ai ${age} ans` ;
+// }
+// console.log(greet(...person))
+//
+//
+// for (var value of groupeC) {
+//   console.log(value);
+// }
+  //=================================================================================================================================
+
 
 //=================================================================================================================================
 

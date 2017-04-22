@@ -41,6 +41,7 @@
     "karma-webpack": "^1.8.1",
     "lite-server": "^2.2.2",
     "mocha": "^2.4.5",
+    "node-uuid": "^1.4.8",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.5.1",
     "react-dom": "^15.4.2",
