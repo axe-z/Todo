@@ -10,6 +10,8 @@ import Search from "./Search"
 const TodoApp = React.createClass({
   getInitialState(){
     return {
+      showCompleted: false,  ///pas de crochet
+      searchText: '',
       todos: [
         {
           id: 1,
@@ -34,11 +36,6 @@ const TodoApp = React.createClass({
       ]
     }
   },
-  handleAddTodo(text){
-  //  alert('new todo:' + text);
-    let newTodo = text;
-    console.log(newTodo)
-  },
   componentDidMount(){  ///est semblable a componentWillMount, will ne trouveras pas le node
     let node =  findDOMNode(this);  ///retourne tout le div.
     TweenMax.set(node, { filter: 'blur(0px)'})
@@ -47,13 +44,24 @@ const TodoApp = React.createClass({
       opacity: 0,  x:  -10,  delay: 0.9,  filter: 'blur(5px)', rotationY: 0, y: 300, scale: 2, ease: Expo.easeOut
     }).play()
  },
+  handleAddTodo(text){
+  //  alert('new todo:' + text);
+    let newTodo = text;
+    console.log(newTodo)
+  },
+  handleSearch(showCompleted,searchText){
+    console.log(showCompleted,searchText)
+    this.setState({
+      showCompleted: showCompleted,  ///on fait ca pour le mettre sur le state, et pouvoir l utiliser ailleurs
+      searchText: searchText.toLowerCase()  ///on fait ca pour le mettre sur le state, et pouvoir l utiliser ailleurs
+    })
+  },
   render() {
-
 let { todos } = this.state
     return (
       <div className="component">
         <h1>Todo App</h1>
-
+        <Search onSearch={this.handleSearch}/>
         <TodoList todos={todos}/>
         <AddTodo onAddTodo={this.handleAddTodo}/>
       </div>
