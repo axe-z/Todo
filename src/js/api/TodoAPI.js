@@ -29,24 +29,31 @@ return $.isArray(todos) ? todos : [];  ///check avant de retourner que c est un 
 
  filterTodos(todos, showCompleted, searchText){
    var filteredTodos = todos;
-
   //filter par showCompleted
   //if(showCompleted)
  filteredTodos = filteredTodos.filter(function (todo){
     return !todo.completed || showCompleted
   })
- //
+ //Filtrer par mots avec indexof
+///donc ce qui est retourner est ce qui est true ..
+//searchText.length === 0  si y a rien d ecrit , renvoit tout,
+//todoText.indexOf(searchText) > -1 ;  si ce que t as est dans le text , return 1 ou 0 donc > -1
+filteredTodos = filteredTodos.filter((todo) => {
+ let todoText = todo.text.toLowerCase();
+  return searchText.length === 0 ||  todoText.indexOf(searchText) > -1 ;    ////va tout retourner, rien d ecrit
+
+})
+
  //  //filter par searchText avec sort()
  // A soit AVANT B, on retourne -1
  // B soit AVANT A, on retourne 1
  // Si on ne veut pas de changement on retourne 0
-
 filteredTodos.sort((a,b) => {
     return !a.completed ? 1 : -1
 })
-
-  //agencer todos
    return filteredTodos;
  }
 
-};
+
+
+}; //export
