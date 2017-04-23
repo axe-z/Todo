@@ -383,7 +383,13 @@ button.submit {
 label.todo {
   display: block;
   padding: 13px 5px;
+  letter-spacing: 0px;
+  transition: all 0.35s ease-in-out;
+  -webkit-transition: all 0.35s ease-in-out;
+  font-family: "NexaThin";
   text-align: left; }
+  label.todo:hover {
+    letter-spacing: 0.5px; }
 
 .todo::after {
   margin-bottom: 10px; }
@@ -446,10 +452,8 @@ input[type="checkbox"] {
 .oldStuff {
   position: relative;
   left: 0;
-  font-family: "NexaThin";
-  font-size: 13px;
-  letter-spacing: 2px;
+  font-family: "NexaRegular";
+  font-size: 14px;
   font-weight: 700;
   color: #0d5f93;
-  top: -11px;
-  left: -38px; }
+  top: -11px; }

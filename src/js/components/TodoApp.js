@@ -20,12 +20,15 @@ const TodoApp = React.createClass({
   },
   componentDidUpdate(){
     TodoAPI.setTodos(this.state.todos)
+        //  this.setState({
+        //    todos: TodoAPI.filterTodos(todos, showCompleted, searchText)
+        //  })
   },
   componentDidMount(){  ///est semblable a componentWillMount, will ne trouveras pas le node
     let node =  findDOMNode(this);  ///retourne tout le div.
     TweenMax.set(node, { filter: 'blur(0px)'})
     var tl = new TimelineMax({paused: true});
-    tl.from(node,2,{  opacity: 0,  x:  -10,  delay: 1,  filter: 'blur(2px)', y: 300, scale: 2, ease: Expo.easeOut
+    tl.from(node,2,{  opacity: 0,  x:  -10,  delay: 1,  filter: 'blur(5px)', y: 100, scale: 1.6, ease: Expo.easeOut
   }).play()
  },
   handleAddTodo(text){  //passe par addtodo
@@ -53,20 +56,22 @@ const TodoApp = React.createClass({
    })
   },
   handleSearch(showCompleted,searchText){ ///passe par search
-    console.log(showCompleted,searchText)
+
     this.setState({
       showCompleted: showCompleted,  ///on fait ca pour le mettre sur le state, et pouvoir l utiliser ailleurs
       searchText: searchText.toLowerCase()  ///on fait ca pour le mettre sur le state, et pouvoir l utiliser ailleurs
     })
+      console.log(showCompleted,this.state.searchText)
   },
   render() {
-let { todos } = this.state
+      let { todos, showCompleted, searchText } = this.state
+      let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
     return (
       <div className="component ">
         <div className="apptodo">
           <h2>AXEZIVITÉS</h2>
           <Search onSearch={this.handleSearch}/>
-          <TodoList todos={todos} onToggle={this.handleToggle}/>
+          <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
           <AddTodo onAddTodo={this.handleAddTodo}/>
         </div>
       </div>

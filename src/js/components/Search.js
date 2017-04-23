@@ -7,7 +7,7 @@ const Search = React.createClass({
   handleOnSearch(e){
     let showCompleted = this.refs.showCompleted.checked //false sans true avec
     let searchText = this.refs.searchText.value.trim();
-  //console.log(showCompleted, searchText)
+
     this.props.onSearch(showCompleted,searchText)
   },
 
@@ -20,7 +20,7 @@ const Search = React.createClass({
         <div>
           <label className="oldStuff">
             <input type="checkbox" className="check" ref="showCompleted" onChange={this.handleOnSearch}/>
-            Affiche seulement les activités non-completées.
+            Afficher aussi les activités completées.
           </label>
         </div>
       </div>
