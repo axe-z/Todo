@@ -1,23 +1,25 @@
 import uuid from 'node-uuid';
 
 module.exports = {
+
+  //METTRE LE DATA SUR LOCALSTORAGE////////////////////////////////////////////////
   setTodos(todos){
    if($.isArray(todos)){    ///is aRray retourne un boolean si arr ou non
     localStorage.setItem('todos', JSON.stringify(todos))  //
     return todos;
    }
   },
+
+  //ALLER SUR LOCALSTORAGE CHERCHER LE DATA/////////////////////////////////////////
   getTodos(){
 let stringTodos = localStorage.getItem('todos') //va renvoyer le string fait par setitem
 //console.log(stringTodos)
 let todos = [];
-
 try {
   todos = JSON.parse(stringTodos)     //pourrait retourner un obj, si y a un fuck... il faut un array
 } catch (e){
  console.log(e)
 }
-
 return $.isArray(todos) ? todos : [];  ///check avant de retourner que c est un arr. sinon on retourne du vide en arr
 //ou
 // if($.isArray(todos)){ ///check avant de retourner que c est un arr.
@@ -27,6 +29,7 @@ return $.isArray(todos) ? todos : [];  ///check avant de retourner que c est un 
 // }
   },
 
+///FILTER///////////////////////////////////////////////////////////////////////////
  filterTodos(todos, showCompleted, searchText){
    var filteredTodos = todos;
   //filter par showCompleted
@@ -51,9 +54,9 @@ filteredTodos = filteredTodos.filter((todo) => {
 filteredTodos.sort((a,b) => {
     return !a.completed ? 1 : -1
 })
-   return filteredTodos;
+   return filteredTodos; //par default si aucune option
  }
-
+////////////////////////////////////////////////////////////////////////////////
 
 
 }; //export

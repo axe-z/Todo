@@ -79,7 +79,9 @@ const { render, findDOMNode  } = ReactDOM;
 const { Component } = React
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import _ from 'lodash';
- require('bootstrap-sass')
+import moment from 'moment';
+//import momentFr from './api/momentFr'; je l ai mis en bas
+
 
 import TodoApp from "./components/TodoApp"
 import AddTodo from "./components/AddTodo"
@@ -98,6 +100,41 @@ import Search from "./components/Search"
   )
 
   //=================================================================================================================================
+  //=================================================================================================================================
+  //MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS
+ // import moment from 'moment';
+//  console.log(moment().format()) //2017-04-23T17:52:39-04:00
+//  ///instance de moment;
+//
+// //IMPORT DE LA VERSION FRANCAISE, A GARDER. IMPORT DE LA VERSION FRANCAISE, A GARDER.
+// import momentFr from './api/momentFr';   ////import de la version francaise, a garder.
+//
+// let now = moment()
+//
+// console.log('Current: ', now.unix()) //Current: 1493034401
+//
+// let timestamp = 1493036283;
+// let momentstamp = moment.unix(timestamp)
+//
+//   console.log('momentstamp', momentstamp.format("LLL")) //momentstamp 23 avril 2017 18:04
+//   console.log(moment(1493025800000).fromNow()) //il y a 2 heures
+//   console.log('momentstamp', momentstamp.format("LL")) //momentstamp 23 avril 2017
+//
+//   console.log('momentstamp', momentstamp.format("DD MMM YY")) //momentstamp 23 avr. 17
+//   console.log('momentstamp', momentstamp.format("dddd, D MMM YY")) //momentstamp 23 avr. 17
+//
+//   console.log('momentstamp', momentstamp.format("dddd, D MMM YY / h:mm"))  //momentstamp lundi, 24 avr. 17 / 8:18
+//
+//
+//   console.log('momentstamp', momentstamp.format("MMMM Do, YYYY / h:mm "))  //momentstamp lundi, 24 avr. 17 / 8:18
+
+  //MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS
+  //=================================================================================================================================
+
+
+
+
+
 // es6 spread operator video 92
 
 // function add( a, b){

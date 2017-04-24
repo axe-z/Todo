@@ -582,13 +582,34 @@ voir code dans app.js
      return searchText length === 0 ||  todoText indexOf(searchText) > -1 ;  //va retourner rien d ecrit ||  et > -1 si oui
 
    })
-
-
   </code></pre>
 </div>
 
 
+<div class="section">
+  <h2>Gere le temps Avec MOMENTS.JS</h2>
+  <li>il est possible avec moment format de sortir un string de la date et heure avec fuseau horaire</li>
+  <li>Il est aussi possible de s en tenir au epoc, et les timestamp</li>
+  <li>lien pour les docs: <a href="https://momentjs.com">MOMENT.JS</a></li>
+  <pre><code>
+epoc
+//// 1 jan 1970 a 12:00am === 0
+//// 1 jan 1970 a 12:01am === 60
+moment
+avec format donne un string
+//console.log(moment().format()) //2017-04-23T17:52:39-04:00
 
+avec unix() ca donne le epoc, timestamp
+console.log('Current', now.unix()) // Current 1492985033
+
+//dans les notes
+moment().format('MMMM Do YYYY, h:mm:ss a'); // avril 23e 2017, 6:10:22 pm
+moment().format('dddd');                    // dimanche
+moment().format("MMM Do YY");               // avr. 23e 17
+moment().format('YYYY [escaped] YYYY');     // 2017 escaped 2017
+
+  </code></pre>
+</div>
 
 </div>
 

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 const { render, findDOMNode  } = ReactDOM;
 import uuid from 'node-uuid';
+import moment from 'moment';
 
 import AddTodo from "./AddTodo"
 import Todo from "./Todo"
@@ -14,15 +15,14 @@ const TodoApp = React.createClass({
     return {
       showCompleted: false,  ///pas de crochet
       searchText: '',
-      todos: TodoAPI.getTodos()
+      todos: TodoAPI.getTodos(),
+ 
 
     }
   },
   componentDidUpdate(){
     TodoAPI.setTodos(this.state.todos)
-        //  this.setState({
-        //    todos: TodoAPI.filterTodos(todos, showCompleted, searchText)
-        //  })
+
   },
   componentDidMount(){  ///est semblable a componentWillMount, will ne trouveras pas le node
     let node =  findDOMNode(this);  ///retourne tout le div.
@@ -38,16 +38,19 @@ const TodoApp = React.createClass({
         {
           id: uuid(),
           text: text,
-          completed: false
+          completed: false,
+          createdAt: moment().unix(),
+          completedAt: undefined
         }
       ]
     })
   },
-  handleToggle(id){    ///passe par toto et todolist
+  handleToggle(id){    ///passe par todo et todolist
   // console.log(id)
    let updatedTodos = this.state.todos.map((todo) => {
        if(todo.id === id ){
          todo.completed = !todo.completed
+         todo.completedAt =  todo.completed ? moment().unix() : undefined
        }
      return todo;
    })
@@ -67,14 +70,16 @@ const TodoApp = React.createClass({
       let { todos, showCompleted, searchText } = this.state
       let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
     return (
+
       <div className="component ">
         <div className="apptodo">
-          <h2>AXEZIVITÉS</h2>
+          <h4>A X E Z I V I T É S</h4>
           <Search onSearch={this.handleSearch}/>
           <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
           <AddTodo onAddTodo={this.handleAddTodo}/>
         </div>
       </div>
+
     )
   }
 });
