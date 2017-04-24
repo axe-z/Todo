@@ -305,7 +305,7 @@ label.todo {
    margin-left: 10px;
    font-family: "NexaBlack";
     color: rgb(13, 95, 147);
-
+  max-width: 350px;
  }
  span {
        color: rgb(134, 134, 134);
@@ -417,4 +417,13 @@ input[type="checkbox"] {
   color: rgb(13, 95, 147);
  top: -11px;
 
+}
+hr {
+  border-bottom: 1px solid white;
+  opacity: 0.5;
+}
+
+.vide {
+  font-weight: 700;
+  color: rgb(13, 95, 147);
 }

@@ -7,17 +7,17 @@ import moment from 'moment';
 const Todo = React.createClass({
   render() {
  let { id, text, completed, createdAt, completedAt } = this.props
+
  let renderDate = () => {
    let message = '| Créée le ';
    let timestamp = createdAt;
-
     if(completed){
       message = ' | Completé le ' ;
       timestamp = completedAt;
     }
-
-   return `${message} ${moment.unix(timestamp).format(' DD MMM YYYY @ h:mm a')} `;
+   return `${ message } ${moment.unix(timestamp).format(' DD MMM YYYY @ h:mm a')} `;
  }
+
     return (
       <div className="millieu"/* onClick={() => {    //au lieu de faire un function en haut de render, qui va envoyer a todoapp onToggle,
         this.props.onToggle(id)  //on fait une simple fn sans nom. ca marche aussi, on aurait pu faire une fn aussi.

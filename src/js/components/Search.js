@@ -19,7 +19,7 @@ const Search = React.createClass({
         </div>
         <div>
           <label className="oldStuff">
-            <input type="checkbox" className="check" ref="showCompleted" onChange={this.handleOnSearch}/>
+            <input type="checkbox" className="check" ref="showCompleted" onChange={this.handleOnSearch}  />
             Afficher aussi les activités completées.
           </label>
         </div>

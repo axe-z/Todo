@@ -396,7 +396,8 @@ label.todo {
     margin: 0;
     margin-left: 10px;
     font-family: "NexaBlack";
-    color: #0d5f93; }
+    color: #0d5f93;
+    max-width: 350px; }
   label.todo span {
     color: #868686; }
   label.todo .date {
@@ -484,3 +485,11 @@ input[type="checkbox"] {
   font-weight: 700;
   color: #0d5f93;
   top: -11px; }
+
+hr {
+  border-bottom: 1px solid white;
+  opacity: 0.5; }
+
+.vide {
+  font-weight: 700;
+  color: #0d5f93; }

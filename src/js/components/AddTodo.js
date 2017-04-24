@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 const { render, findDOMNode  } = ReactDOM;
-
+import _ from 'lodash';
 
 
 const AddTodo = React.createClass({
   onSubmitTodo(e){
    e.preventDefault();
-   let afaire = this.refs.todoText.value;
+   let afaire = _.capitalize(this.refs.todoText.value);
    if(afaire && afaire.length >= 5 ){
      this.props.onAddTodo(afaire)
      this.refs.todoText.value = '';

@@ -16,7 +16,7 @@ const TodoApp = React.createClass({
       showCompleted: false,  ///pas de crochet
       searchText: '',
       todos: TodoAPI.getTodos(),
- 
+
 
     }
   },
@@ -74,8 +74,11 @@ const TodoApp = React.createClass({
       <div className="component ">
         <div className="apptodo">
           <h4>A X E Z I V I T É S</h4>
-          <Search onSearch={this.handleSearch}/>
+          <Search onSearch={this.handleSearch} />
+          <hr />
           <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
+          <hr />
+          <br />
           <AddTodo onAddTodo={this.handleAddTodo}/>
         </div>
       </div>
