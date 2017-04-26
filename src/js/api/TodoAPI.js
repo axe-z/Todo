@@ -30,7 +30,7 @@ return $.isArray(todos) ? todos : [];  ///check avant de retourner que c est un 
   },
 
 ///FILTER///////////////////////////////////////////////////////////////////////////
- filterTodos(todos, showCompleted, searchText){
+ filterTodos(todos, showCompleted, searchText,  completedAt ){
    var filteredTodos = todos;
   //filter par showCompleted
   //if(showCompleted)
@@ -54,8 +54,18 @@ filteredTodos = filteredTodos.filter((todo) => {
 filteredTodos.sort((a,b) => {
     return !a.completed ? 1 : -1
 })
+filteredTodos.sort((a,b) => {
+    return !a.completedAt ? 1 : -1
+})
+
+
+
    return filteredTodos; //par default si aucune option
  }
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 
 

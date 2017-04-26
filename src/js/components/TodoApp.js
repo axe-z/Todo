@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 const { render, findDOMNode  } = ReactDOM;
 import uuid from 'node-uuid';
 import moment from 'moment';
+import momentFr from '../api/momentFr';
 
 import AddTodo from "./AddTodo"
 import Todo from "./Todo"
@@ -67,7 +68,7 @@ const TodoApp = React.createClass({
       console.log(showCompleted,this.state.searchText)
   },
   render() {
-      let { todos, showCompleted, searchText } = this.state
+      let { todos, showCompleted, searchText, completedAt } = this.state
       let filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
     return (
 

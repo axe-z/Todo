@@ -74,7 +74,7 @@ module.exports = {
       //  stats: "errors-only",   //dans la console, moins de truc, sauf erreurs si jamais...
         open: true    // va ouvris une fenetre , comme avec lite server.
      },
-      devtool: 'source-map',
+      devtool: 'source-map',  //pour avoir seulement le vrai code et non pas le translater par babel.
      plugins: [
        new HtmlWebpackPlugin({
          title: 'React',

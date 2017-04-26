@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>React</title><link rel="icon" type="image/png" href="favicon.png"><link href="app.css?b3d0a0c2f0f4fcf68247" rel="stylesheet"></head><body><!-- <h1>React</h1> --><div id="MainInterface"></div><div id="app"></div><div class="notes"><div class="section"><h2>React the notes</h2><li>A la base on a juste un render a lancer pour avoir du jsx a l ecran</li><li>React.createClass vs extends React.Component voir lien ici : :::::<a href="http://stackoverflow.com/documentation/reactjs/6371/react-createclass-vs-extends-react-component#t=201611112010580710903"></a></li><li>seulement un container doit etre retourné.</li><li>componentDidMount est une maniere d 'avoir acces au debut '</li><li>lui suggere de faire une variable avec nos props et les pointer vers this. props. valeur et dans le jsx utiliser que le nom de variable, ca fait du sens...</li><li>Les refs: permet de mettre un hook, pour acceder a un tag, et en tirer sa valeur par exemple. refs est un objet, et on accede a ses nom par dot notation</li><li>le state est l objet qui produit un refresh, doit etre creer d'avance, les props eux se font initialiser dans le render , sont read only, et mis sur le component terminé, le state est dans le corps du component et est read , write. BRef un component ne modifie pas ses props, mais modifie continuellement son state.</li><li>On les creer avec getInitialState en createClass, en es6, juste l object dans le constructor.</li><li>il est possible de faire des raccorci, puisque props est une onbjet let p = this.props , ensuite p.nom == this.props.nom</li><li>deux function sont importante ici a present.getInitialState et getInitialState, function qui return un obj de key -> value</li></div><div class="section"><h2>Animer React avec Tweenmax</h2><li>Dans componentDidMount, on doit selectionner le node ( le contenant unique du component) node = ReactDOM findDOMNode (this)</li><li>pour animer qu un seul des children, on doit le trouver ndas l index de children. et en faire une variable.</li><li>Ensuite , meme chose qued habite avec GSAP</li></div><div class="section"><h2>Suite React, avoir plusieurs components</h2><li>Quand et ou diviser ses components, ici la form devrait etre ailleurs, le greeting, l autre.</li><li>il est suggere de faire une version statique bien divisee au depart et ensuite ajouter les fonctionnalites.</li><li>Decider si prop ou state: simplement se demander si une valeur sera modifiee, si oui, STATE, sinon, props.</li></div><div class="section"><h2>Envoyer du data d'un component externe au container</h2><li>Le container doit par exemple, sur un onchange, ou submit, appeler une function locale, cette fonction locale elle doit traiter le data une fois fait, doit la passer au container (on parle du component prinicipale) par un propriete, une prop.</li><li>dans l'externe on a ici par exemple une fonction onFormSubmit , cette fonction pour envoyer ca au container a l'aide d une props function</li><li>dans l'instance du component externe dans le container nomducomponentexterne on y met une props qui elle meme lance une function locale sur le contianer, qui change le state pour creer l ajustement , le rafraichissement.</li></div><div class="section"><h2>Presention component VS container component</h2><li>Un presentation component est un componenet sans state, il ne fait qu afficher ses props.</li><li>un container compo. lui a ses state et va avoir les methodes qui s en suivent</li><li>Si on contruit un objet pour les valeurs de state a changer, au lieu de faire des key value, on peut passer l object complet.</li></div><div class="section"><h2>division des components</h2><li>Il devient plus facile de lire les fichieers une fois separe. faire un folder component, ensuite , importer react dans les fichiers du meme nom que les component</li><li>des const doivent se faire exporter au debut sans default ou a la fin avec le default, et non pas au moment de sa creation avec default. default est un seul export par module</li></div><div class="section"><h2>Routing</h2><li>le contenant est le Router, dans lui des routes , et les route sont logique a l ecran, dans le main,si on veut garder, mais aller a une autre page qui demande a ce que main reste, on fait le lien entre les deux bout de main et y mettre /about. l autre props est component et appelle le nom du component que l on veut a ce path.</li><li>IndexRoute, est pour celui par defaut si on veut, si le hash n'est pas juste, mettons que je tape abOt au lieu d about, ca ira a l index route. Compliquer, mais si on avait que des route, le / ne chargerait rien, mais la il a un children , dans l indexroute. Donc le indexroute devient le par defaut... avec indexroute s appelait defaultroute.. ce qui etait plus clair</li><li>Link au lieu de a link, en majuscule le link, mais il est possible d'utiliser des a avec href de #/about , et ca fera le meme chemin. On utilise Link parce que nous avons la possibilite de stylyser specifiquement pour la page que l on veut.</li><li>Aussi avec actviveClass, on peut determiner le defaut, et le style.</li><li>Quand on utilise indexRoute, dans le router, sur le component en question, le lien du nav sera toujours actif avec Link, il faut utiliser indexLink</li></div><div class="section"><h2>Es6 promises</h2><li>Voici un leger rappel sur les promesses</li><pre><code>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>React</title><link rel="icon" type="image/png" href="favicon.png"><link href="app.css?8da044c8fd6cb6d058f5" rel="stylesheet"></head><body><!-- <h1>React</h1> --><div id="MainInterface"></div><div id="app"></div><div id="redux"></div><div class="notes"><div class="section"><h1 class="center">Notes sur REACT / REDUX / KARMA / FIREBASE</h1><h2>React..</h2><li>A la base on a juste un render a lancer pour avoir du jsx a l ecran</li><li>React.createClass vs extends React.Component voir lien ici : :::::<a href="http://stackoverflow.com/documentation/reactjs/6371/react-createclass-vs-extends-react-component#t=201611112010580710903"></a></li><li>seulement un container doit etre retourné.</li><li>componentDidMount est une maniere d 'avoir acces au debut '</li><li>lui suggere de faire une variable avec nos props et les pointer vers this. props. valeur et dans le jsx utiliser que le nom de variable, ca fait du sens...</li><li>Les refs: permet de mettre un hook, pour acceder a un tag, et en tirer sa valeur par exemple. refs est un objet, et on accede a ses nom par dot notation</li><li>le state est l objet qui produit un refresh, doit etre creer d'avance, les props eux se font initialiser dans le render , sont read only, et mis sur le component terminé, le state est dans le corps du component et est read , write. BRef un component ne modifie pas ses props, mais modifie continuellement son state.</li><li>On les creer avec getInitialState en createClass, en es6, juste l object dans le constructor.</li><li>il est possible de faire des raccorci, puisque props est une onbjet let p = this.props , ensuite p.nom == this.props.nom</li><li>deux function sont importante ici a present.getInitialState et getInitialState, function qui return un obj de key -> value</li></div><div class="section"><h2>Animer React avec Tweenmax</h2><li>Dans componentDidMount, on doit selectionner le node ( le contenant unique du component) node = ReactDOM findDOMNode (this)</li><li>pour animer qu un seul des children, on doit le trouver ndas l index de children. et en faire une variable.</li><li>Ensuite , meme chose qued habite avec GSAP</li></div><div class="section"><h2>Suite React, avoir plusieurs components</h2><li>Quand et ou diviser ses components, ici la form devrait etre ailleurs, le greeting, l autre.</li><li>il est suggere de faire une version statique bien divisee au depart et ensuite ajouter les fonctionnalites.</li><li>Decider si prop ou state: simplement se demander si une valeur sera modifiee, si oui, STATE, sinon, props.</li></div><div class="section"><h2>Envoyer du data d'un component externe au container</h2><li>Le container doit par exemple, sur un onchange, ou submit, appeler une function locale, cette fonction locale elle doit traiter le data une fois fait, doit la passer au container (on parle du component prinicipale) par un propriete, une prop.</li><li>dans l'externe on a ici par exemple une fonction onFormSubmit , cette fonction pour envoyer ca au container a l'aide d une props function</li><li>dans l'instance du component externe dans le container nomducomponentexterne on y met une props qui elle meme lance une function locale sur le contianer, qui change le state pour creer l ajustement , le rafraichissement.</li></div><div class="section"><h2>Presention component VS container component</h2><li>Un presentation component est un component sans state, il ne fait qu afficher ses props.</li><li>un container compo. lui a ses state et va avoir les methodes qui s en suivent</li><li>Si on contruit un objet pour les valeurs de state a changer, au lieu de faire des key value, on peut passer l object complet.</li></div><div class="section"><h2>division des components</h2><li>Il devient plus facile de lire les fichieers une fois separe. faire un folder component, ensuite , importer react dans les fichiers du meme nom que les component</li><li>des const doivent se faire exporter au debut sans default ou a la fin avec le default, et non pas au moment de sa creation avec default. default est un seul export par module</li></div><div class="section"><h2>Routing</h2><li>le contenant est le Router, dans lui des routes , et les route sont logique a l ecran, dans le main,si on veut garder, mais aller a une autre page qui demande a ce que main reste, on fait le lien entre les deux bout de main et y mettre /about. l autre props est component et appelle le nom du component que l on veut a ce path.</li><li>IndexRoute, est pour celui par defaut si on veut, si le hash n'est pas juste, mettons que je tape abOt au lieu d about, ca ira a l index route. Compliquer, mais si on avait que des route, le / ne chargerait rien, mais la il a un children , dans l indexroute. Donc le indexroute devient le par defaut... avec indexroute s appelait defaultroute.. ce qui etait plus clair</li><li>Link au lieu de a link, en majuscule le link, mais il est possible d'utiliser des a avec href de #/about , et ca fera le meme chemin. On utilise Link parce que nous avons la possibilite de stylyser specifiquement pour la page que l on veut.</li><li>Aussi avec actviveClass, on peut determiner le defaut, et le style.</li><li>Quand on utilise indexRoute, dans le router, sur le component en question, le lien du nav sera toujours actif avec Link, il faut utiliser indexLink</li></div><div class="section"><h2>Es6 promises</h2><li>Voici un leger rappel sur les promesses</li><pre><code>
 
      function addPromesse(a,b){
       return new Promise((res,rej) => {
@@ -21,7 +21,7 @@
      }).catch( err => {
        console.log('oups' + err )
      })
-  </code></pre></div><div class="section"><h2>Linker tout..</h2><li>La form onsubmit lance un func qui elle valide le data, et l envois a une func qui sera une props sur l elelment, qui elle meme lancera un handleSearch. elle recoit le data, et ici deviendra un state, et pour modifier, il faut des states.</li><li>Ces state la pour les passer, on utilise la destrucration = le state, et le passe en props. le componenet qui recoit, peut lui aussi destructurer les state, mais rendu la , ils sont des props. Je me comprendrai jamais.</li><pre><code>
+  </code></pre></div><div class="section"><h2>Linker tout..</h2><li>La form onsubmit lance un func qui elle valide le data, et l envois a une func qui sera une props sur l elelment, qui elle meme lancera un handleSearch. elle recoit le data, et ici deviendra un state, et pour modifier, il faut des states.</li><li>Ces state la pour les passer, on utilise la destrucration = le state, et le passe en props. le component qui recoit, peut lui aussi destructurer les state, mais rendu la , ils sont des props. Je me comprendrai jamais.</li><pre><code>
 
   </code></pre></div><div class="section"><h2>Le fetch API</h2><li>le point du fetch, c est qu il recoit du data, mais il sait pas quoi, res.json() est la cle et fait l object.</li><li>ensuite on suit le chemin tout simplement vers ce que l on a de besoin.</li><pre><code>
 
@@ -41,7 +41,7 @@
   }
 getTemp('laval') retourne 22 ..
 
-  </code></pre></div><div class="section"><h2>Retourner conditionnelement son jsx</h2><li>il est possible de decider si on retourne ci ou ca, avec une function dans la portion render, avant le return.</li><li>ca peut etre tel compoenent, ou celui la, il s agit seulement dnas le return entre parenthese jsx, de lancer la fu nction qui fait le if, et determine quoi montrer</li><li></li></div><div class="section"><h2>Ajout des source-maps</h2><li>Dans config de webpack devtool: 'source-map' nous donne maintenant notre code dans la console et pas le code transformé, ca deveient bcp plus simple pour les erreurs.</li></div><div class="section"><h2>Stateless functionnal component</h2><li>Qaund un componenet est plus simple, il est preferable d utiliser un SFC.</li><li>on ne peut y mettre de refs, de methode de lifecycle non plus, snapppp.</li><pre><code>
+  </code></pre></div><div class="section"><h2>Retourner conditionnelement son jsx</h2><li>il est possible de decider si on retourne ci ou ca, avec une function dans la portion render, avant le return.</li><li>ca peut etre tel compoenent, ou celui la, il s agit seulement dnas le return entre parenthese jsx, de lancer la fu nction qui fait le if, et determine quoi montrer</li><li></li></div><div class="section"><h2>Ajout des source-maps</h2><li>Dans config de webpack devtool: 'source-map' nous donne maintenant notre code dans la console et pas le code transformé, ca deveient bcp plus simple pour les erreurs.</li></div><div class="section"><h2>Stateless functionnal component</h2><li>Qaund un component est plus simple, il est preferable d utiliser un SFC.</li><li>on ne peut y mettre de refs, de methode de lifecycle non plus, snapppp.</li><pre><code>
 
   </code></pre></div><div class="section"><h2>GIT</h2><li>VOIR LES VIDEOS DANS THE COMPLETE REACT WEB APP COURSE VIDEO 40 A 45</li><li>Pour installer git, dans le folder du project, taper git init dans le terminal , un fichier sera creer, qu on voit pas</li><li>git status, permet de voir ou en est le git, et au depart aucun fichier n'est surveille, on ne veut seulement pas node-moudle</li><li>.gitignore que l on doit creer au root, et y mettre ce qu'on ne veut pas tracker : .DS_Store , bs-config.json et node_modules/</li><li>Si on relance git status, ceux ci ne sont plus present</li><li>Maintenant pour faire un commit, on tape: git add .gitignore pour ajouter a la liste verte se fichier.</li><li>Maintenant pour eviter d avoir a tout taper, on peut seulement taper : GIT ADD . avec le point, on ajoute tous les fichier non-black listé par le git ignore. refaire git status pour voir</li><li>Tout est maintenant vert.Mais rien a raiment savé</li><li>Maintenant pour sauvegarder : en minuscule: GIT COMMIT -m 'Commit Initial' , dans le string, on met simplement un description, si mose ajour , bug reparation, ou peu importe.</li><li>la liste des fichiers sera a l ecran , refaire git status et la liste des fichier modifiers depuis y sera, icil index a changer parce que je tappe, et celui, le index fait par webpack aussi...</li><li>Donc chaque fois qu on touche un fichier, il s ajoutera a la liste pas updatees rouge.</li><li>on pourrait rfaire les memes etapes, mais : GIT COMMIT -A -M 'UPDATE' , ici j'ai eu a identifier l ordi.</li><li>Si un fichier est ajouté, on doit cependant l ajouter avec git add .</li><li>j ai fait un readme, donc je doit refaire git add .</li><br><br><br><h2>Dans Github</h2><li>compte axe-z, on doit dnas les settings alleer activer sa cle SSH, ce qui permet d associer les data et le compte.</li><li>pour ne pas a avoir a taper, nom et password a chaque push, la cle est importante.</li><li>pour se rendre a sa cle sur son ordi, dans le termianl tapper: ls -al ~/.ssh</li><li>id_rsa , est la cle privee.</li><li>id_rsa.pub est la cle public pour le git hub.</li><li>ajouter a son keychain d ordi, la cle git hub: une fois fait (voir videos)</li><li>faire refresh sur git hub, et creer un repo</li><h2>pousser le data la bas</h2><li>git remote add origin https://github.com/axe-z/ReactStuff.git</li><li>ensuite voir si ca fonctionne, y aura pas de confirmation : git remote -v</li><li>edux lien arrivent , un fetch et un push</li><li>origin https://github.com/axe-z/ReactStuff.git (fetch) origin https://github.com/axe-z/ReactStuff.git (push)</li><li>git branch sit si on est sur le master</li><h3>une fois setter</h3><li>seulement faire un : git commit -a -m 'ajout copy'</li><li>une fois fait pour pusher au serveur: git push et c'est fait</li></div><br><br><br><br><br><br><br><div class="section"><h2>Comment ajouter un projet a git</h2><li>arreter webpack</li><li>lancer git init</li><li>lancer git status, pour voir tous les fichier inclut (optionnel)</li><li>lancer git add .</li><li>lancer git commit -a -m 'Initial commit'</li><li>Se rendre sur le site de github pour creer un nouveau repo</li><li>A la page du quick setup, et on veut l option qui push du command line: on copy et paste : git remote add origin https://github.com/axe-z/nomdutruc.git git push -u origin master</li><li>Une fois fait, il s agit seulement de rafraichir la page et le repo devrait maintenant est rempli de mes fichiers.</li><li>fin</li><pre><code>
 
@@ -270,4 +270,568 @@ moment().format('dddd');                    // dimanche
 moment().format("MMM Do YY");               // avr. 23e 17
 moment().format('YYYY [escaped] YYYY');     // 2017 escaped 2017
 
-  </code></pre></div></div><script type="text/javascript" src="app.js?b3d0a0c2f0f4fcf68247"></script></body></html>
+
+
+//MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS MOMENT.JS
+//import moment from 'moment';
+  console.log(moment().format()) //2017-04-23T17:52:39-04:00
+  ///instance de moment;
+
+ //IMPORT DE LA VERSION FRANCAISE, A GARDER. IMPORT DE LA VERSION FRANCAISE, A GARDER.
+// import momentFr from './api/momentFr';   ////import de la version francaise, a garder.
+
+ let now = moment()
+
+ console.log('Current: ', now.unix()) //Current: 1493034401
+
+ let timestamp = 1493036283;
+ let momentstamp = moment.unix(timestamp)
+
+   console.log('momentstamp', momentstamp.format("LLL")) //momentstamp 23 avril 2017 18:04
+   console.log(moment(1493025800000).fromNow()) //il y a 2 heures
+   console.log('momentstamp', momentstamp.format("LL")) //momentstamp 23 avril 2017
+
+   console.log('momentstamp', momentstamp.format("DD MMM YY")) //momentstamp 23 avr. 17
+   console.log('momentstamp', momentstamp.format("dddd, D MMM YY")) //momentstamp 23 avr. 17
+
+   console.log('momentstamp', momentstamp.format("dddd, D MMM YY / h:mm"))  //momentstamp lundi, 24 avr. 17 / 8:18
+
+
+   console.log('momentstamp', momentstamp.format("MMMM Do, YYYY / h:mm "))  //momentstamp lundi, 24 avr. 17 / 8:18
+
+  </code></pre></div><div class="section"><h2>Redux - la base</h2><li>En gros redux aide a maintenir des States</li><li>et de la maniere que nos component sont fait avant redux, on fait quelque chose sur un component, et le parent fini le boulot par un props (ou le voir a l inverse), rendant les components peu reutilisable.</li><li>Donc chaque component en ce moment depend d un autre, en passant l info par une fonction qui devient une props et demande donc a etre coupler avec un autre fichier. on peut faire mieux avec redux.</li><li>donc avec un STORE, redux conserve ce qui est neccessaire, avec du simple JS, et des actions.</li><li>redux peut etre utilise sans react, mais il vont bien ensemble, aussi, redux a un paquet de middleware pour tous les situations, et est bcp bcp simple que flux, lui de facebook.</li><pre><code>
+//exemple de setting redux
+
+ let reduxState = {
+  searchText: 'chien',
+  showCompleted: false,
+  todos: [
+  {
+    id: 123,
+    text: 'promener le chien'
+  }...
+  ]
+};
+
+let action: {
+  type: 'CHANGE_SEARCH_TEXT',
+  searchText: 'quelquechose d autre'
+}
+  </code></pre></div><div class="section"><h2>Redux partII</h2><li>refresh sur pur VS impure avec add function</li><li>REDUX demande a travailler en PURE function sinon des trucs fonctionneront pas et donneront pas le resultat espere.</li><ul><li>donc les regles :</li><li>avec les meme input, ca donne tjrs la meme chose</li><li>pas de side-effects,change une variable exterieur</li><li>eviter promises et async comme CB, ni meme se connecter a une database</li></ul><li>Voici un rappel</li><pre><code>
+    //pur function  si on met 2 et 2 ca donnera tjrs la meme chose et no side effects, change rien ailleurs.
+    function add(a,b){
+      return a + b
+    }
+
+    ///IMPURE
+    //non pure , a pourrait changer.
+    let a = 3
+    function add( b){
+      return a + b
+    }
+    //ou impure, ca change quelque chose a l exterieur. == side-effect
+    let result
+    function add( b){
+      result = a + b
+      return result;
+    }
+    //ou impure, on aura pas tjrs la meme reponse.
+    function add(a,b){
+      return a + b + new Date().getSeconds();
+    }.
+
+
+    ///PURE  COMMENT PASSER UN OBJ DANS UNE FN PURE.
+    //pure, garde le meme obj. AVEC ES6
+    function changePropPur(obj){
+      return {
+        ...obj,
+        name: 'Dave'
+      }
+    }
+
+
+    let res = changePropPur({
+      name: 'Ben',
+      age: 40
+    })
+
+
+    let startValue = {
+      name: 'Ben',
+      age: 40
+    }
+    console.log(changePropPur(startValue))///garde dave Object {name: "Dave", age: 40}
+    console.log(res) ///garde dave Object {name: "Dave", age: 40}
+
+  </code></pre></div><div class="section"><h2>Redux, part III , la decouverte et le reducer et du store</h2><li>J'ai du faire un REQUIRE, import ne fonctionnait pas, il faut : import * as redux from 'redux'</li><li>Pour creer un store, il faut un fn pure. la fonction reducer, une arrow function vide</li><li>le store a donc besoin du reducer , et le reducer , a besoin du state qu il doit changer et l action qu il doit prendre</li><li>le reducer, sa forme doit avoir : un objet par default pour le state et retourne un state a la fin. bravo</li><li>donc le store est un simple object, avec endedans les states</li><pre><code>
+    import * as redux from 'redux'
+    console.log('test de redux')
+
+    //en es5 comme le name space, pour avoir un default. mais y a maintenant en es6, le default dans les arguments...
+     <!-- let reducer = (state, action) => {
+       state = state || { name: 'Anonymous' }
+        return state
+     }; //pas the BEST -->
+
+     es6
+     //es6
+     let reducer = (state = {searchText :'', showCompleted: false, todos: [] }, action) => {
+        return state
+      };
+
+      let stateDefault = {
+        searchText : '',
+        showCompleted: false,
+        todos: []
+      }
+      let reducer = (state = stateDefault, action) => {
+         console.log('Nouvelle action: ', action )  //permet de visualiser l entree des actions
+         return state
+       };
+
+
+     let store = redux.createStore(reducer);
+
+     let currentState = store.getState();
+     console.log(currentState) // Object {searchText: "", showCompleted: false, todos: Array(0)} parfait !
+     retourne le state de default.
+
+  </code></pre></div><div class="section"><h2>Redux part IV , le store conserve, les actions changent</h2><li>C'est avec les action qu on peut modifier les states, et les actions sont un simple object.</li><li>la seule chose necessaire sur un obj action, est un type. celui ci represente le nom de l action.</li><li>En regle generale, le nom, le type est en majuscule et utiliseles underscores</li><li>ensuite la valeur que l 'on veut modifier'</li><li>Ensuite, pour faire le changement, il s agit de DISPATCHER aux store : store.dispatch(et on y met l action voulue)</li><li>Rien semble se produire, mais si on ajoute un checkeur avec console dans le dispatcher , on y voit l action s ajouter</li><li>Pour que le dispatch change le data, il faut un switch statement.</li><li>Dans celui, le case est le nom du type case 'CHANGE_NAME': et retourne un obj (ce qui etait (...state) et le nouveau : name: action.name ) et il faut un default state aussi, et lui retourne le state.</li><li>pour voir le changement il faut un nouvel store.getState()</li><li>Ceci est la version lente , mais voila.</li><li>pour raccourcir, on peut au lieu de creer un obj action, le mettre directement dans le dispatch.</li><li>redu est le shortcut pour le reducer, c'est long a taper sinon. on peut combiner plusieur changement, voir dernier exemple.</li><li>Donc voila, le reducer est une fonction pure, qui recoit des dispatch, et par un switch statement, prend le stateet lui modifie ses elements</li><pre><code>
+  //example d 'action
+
+  let action = {
+    type: 'CHANGE_NAME',
+    name: 'Ben'
+  }
+store.dispatch(action)
+//Nouvelle action:  Object {type: "@@redux/INIT"}  ///action par defaut
+//Object {name: "Anonymous"} // l etat de l obj initial
+//Nouvelle action:  Object {type: "CHANGE_NAME", name: "Ben"}  //injection de l action
+
+mais a ce point ci rien ne change avant le switch statement dans le reducer:
+switch (action.type) {  //le switch doit regarder le type de l action.
+
+////maintenant avec es6, on prend le ...state et ajoute a celui ci et le default switch , retourne.
+
+let reducer = (state = {name: 'Anonymous'}, action) => {
+  console.log('Nouvelle action: ', action )  //permet de visualiser l entree des actions
+  switch (action.type) {
+   case 'CHANGE_NAME':
+   return {
+     ...state,     ///la raison, bien qu au debut ca fait pas de sens de ramener ce qu on a (rien) , au deuxieme dispacth
+     name: action.name   //il faut tout ramener, sinon on repart a 0 tout le temps
+   }
+   default:
+    return state
+  }
+};
+
+//maintenant pour voir si ca fonctionne il faut un nouveau store.getState(),
+ console.log('name devrait etre Ben', store.getState()) //name devrait etre Ben Object {name: "Ben"}
+
+donc on a change une valeur, avec une fonction pure, sans avoir a faire un object.assign
+
+
+ //pour prendre mois de temps:
+ let action = {
+   type: 'CHANGE_NAME',
+   name: 'Ben'
+ }
+ store.dispatch(action);  //mais on verra rien pour l instant si pas de console dnas le reducer.
+
+//DEVIENT
+ store.dispatch({
+   type: 'CHANGE_NAME',
+   name: 'Ben'
+ })
+
+
+
+///EXEMPLE SUR DEUX ETATS///////////////EXEMPLE SUR DEUX ETATS////////////
+
+let reducer = (state = stateDefault, action) => {
+  console.log('Nouvelle action: ', action )  //permet de visualiser l entree des actions
+  switch (action.type) {
+   case 'CHANGE_TEXT':
+   return {
+     ...state,
+     searchText: action.searchText
+   }
+   case 'CHANGE_BOOL':
+   return {
+     ...state,
+     showCompleted: action.showCompleted
+   }
+   default:
+    return state;
+  }
+};
+
+let store = redux.createStore(reducer);
+store.dispatch({
+  type: 'CHANGE_TEXT',
+  searchText: 'Change le text'
+})
+store.dispatch({
+  type: 'CHANGE_BOOL',
+  showCompleted: true
+})
+
+let currentState = store.getState();
+//Object {searchText: "Change le text par un dispatch", showCompleted: true, todos: Array(0)}
+
+
+///EXEMPLE SUR DEUX ETATS///////////////EXEMPLE SUR DEUX ETATS////////////
+  </code></pre></div><div class="section"><h2>Redux, part V , subscribe</h2><li>Pour remplacer les console de getState pour savoir si les choses on changes.</li><li>a l exterieur plus besoin de mettre un paquet de console.log, pour tenir a jour les modifications</li><li>Des qu'un changement se produit sur le state, on peut le veriifier , en regardant dans le subscribe, state.truc qu on veut savoir.</li><li>subscribe par defaut retourne un fonction. Cette fonction permet de se unsubcriber . donc on peut l associer directement a unsubscrib : let unsubscribe = store.subscribe(()</li><pre><code>
+
+    let unsubscribe = store.subscribe(() => {
+      let state = store.getState();
+      console.log('name est', state.name )
+    });
+    store.dispatch({
+      type: 'CHANGE_NAME',
+      name: 'Ben'
+    })
+   unsubscribe();  //Benoit sortira pas. unsubcriber avant
+    store.dispatch({
+      type: 'CHANGE_NAME',
+      name: 'Benoit'
+    })
+
+  </code></pre></div><div class="section"><h2>Redux dev-tools</h2><li>l install est simple sur chrome</li><li>Mais pour fonctionner, il faut que le dev tools voit un store. par defaut a ce point -ci il ne le voit pas.</li><li>let store = redux.createStore(reducer) est l endroit ou on fait le lien en second argument.</li><pre><code>
+
+    let store = redux.createStore(reducer, redux.compose(
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    ));
+
+  </code></pre></div><div class="section"><h2>Redux part VI, dealer avec les arr d'obj</h2><li>Il est important de comprendre pourquoi, on ...state ou ...state.hobbies, bien qu au debut, il n 'a rien a ramener, il faut comprendre que ce loop va se faire plusieurs fois, a chaque dispatch, donc ...state, ou autre, est la pour ne pas perdre ce qui etait la avant, avec le dispatch , on ne veut pas repartir a zero, mais c'est une progression plutot.</li><li>Il est une bonne idee avec les arr, de se faire un systeme d'Id. plus facile se retrouver par la suite.</li><pre><code>
+ ES6 avec l extentiation ...
+
+ let stateDefault = {
+   name: 'Anonymous',
+   hobbies: []
+ }
+
+let nextHobbyId = 1; ajoute un systeme d Id
+
+let reducer = (state = stateDefault, action) => {
+
+  switch (action.type) {
+   case 'CHANGE_NAME':
+   return {
+     ...state,                       //pour le deuxieme tours, on doit ramener tout
+     name: action.name
+   }
+   case 'ADD_HOBBY':               //pour l arr.
+   return {                        /// on retourne tout avant
+     ...state,
+     hobbies: [                   ///ensuite pour l arr hobbies
+       ...state.hobbies,           /// on retourne tout avant (meme si rien, en partant) , sinon on overwrite
+       {
+         id: nextHobbyId++,       //ajouter un Id
+         hobby: action.hobby     //ensuite lobj qu on veut dans l arr
+       }
+     ]
+   }
+   default:
+    return state;
+  }
+};
+//Donne
+///Object {id: 1, hobby: "Courrir"} Object {id: 2, hobby: "Sauter a la corde"}
+  </code></pre></div><div class="section"><h2>Redux part VIII, REMOVE STUFF</h2><li>Maintenant qu/on sait ajouter, comment retirer...</li><li>D'abord dasn le dispatch, on doit avoir ce que l'on veut pu, qu on veut deleter, pas besoin de rentrer tous les trucs, juste le id est ok.</li><li>ensuite dans le reducer, on doit RESTER PUR. map filter, sort, sont du bon stock ! Donc filter est le best pour ca.</li><li>On fait un retour sur tout ce qui n'est pas ce que l on veut sur le dispatch, et that it.</li><li>Comme on peut voir ici le reducer s'en vient long, on va diviser ca..</li><pre><code>
+
+ le dispatch
+ store.dispatch({
+   type: 'REMOVE_HOBBY',
+   id: 2
+ })
+ store.dispatch({
+   type: 'REMOVE_MOVIE',
+   id: 1
+ })
+
+sur le reducer :
+let reducer = (state = stateDefault, action) => {
+
+  switch (action.type) {
+   case 'CHANGE_NAME':
+   return {
+     ...state,     //pour le deuxieme tours, on doit ramener tout
+     name: action.name
+   }
+   case 'ADD_HOBBY':        //pour l arr.
+   return {                 /// on retourne tout avant
+     ...state,
+     hobbies: [            ///ensuite pour l arr hobbies
+       ...state.hobbies,     /// on retourne tout avant (meme si rien, en partant) , sinon on overwrite
+       {
+         id: nextHobbyId++,   //ajouter un Id
+         hobby: action.hobby     //ensuite lobj qu on veut dans l arr
+       }
+     ]
+   }
+   ///////   ///////   ///////   ///////  ICI  ///////   ///////   ///////   ///////
+   case 'REMOVE_HOBBY':    // RETIRER de l arr, ce qu'on ne veut pas
+   return {               /// on retourne tout avant
+     ...state,
+     hobbies: state.hobbies.filter((hobby) => {
+       return hobby.id !== action.id          // on retourne tout ce qui n'a pas id: 2 finalement
+     })
+   }
+  ///////   ///////   ///////   ///////  ICI  ///////   ///////   ///////   ///////
+   case 'ADD_MOVIE':  //pour l arr.
+   return {           /// on retourne tout avant
+     ...state,
+     movies: [           ///ensuite pour l arr hobbies
+       ...state.movies,     /// on retourne tout avant (meme si rien, en partant) , sinon on overwrite
+       {
+         id: nextMovieId++,   //ajouter un Id
+         title: action.title,
+         genre: action.genre     //ensuite lobj qu on veut dans l arr
+       }
+     ]
+   }
+      ///////   ///////   ///////   ///////  ICI  ///////   ///////   ///////   ///////
+   case 'REMOVE_MOVIE':    // RETIRER de l arr, ce qu'on ne veut pas
+   return {               /// on retourne tout avant
+     ...state,
+     movies: state.movies.filter((movie) => {
+       return movie.id !== action.id          // on retourne tout ce qui n'a pas id: 2 finalement
+     })
+   }
+      ///////   ///////   ///////   ///////  ICI  ///////   ///////   ///////   ///////
+   default:
+    return state;
+  }
+};
+  </code></pre></div><div class="section"><h2>Redux, part IX , plusieurs reducer , pour mieux s'y retrouver.</h2><li>Nous avons ici des names, hobbies et movies, il serait p-e temps de faire des reducers plus specifiques.</li><li>Il est donc possible de diviser les taches, certes , ce sans meme s'en remettre a la magie noire, ou priere celestres.</li><li>let reducer = redux.combineReducers( { name: nameReducer})</li><li>Ici maintenant que name n'est plus un object, mais juste un string , on change de Anonymous a Beb a Benoit, tous des strings</li><li>Dans le cas des arrays, on retourne un array, et celui ci est simplement sur state et NON pas sur state.movies..</li><li>donc ici on a un meilleur patern de boulot.</li><pre><code>
+     //NAME
+    let nameReducer = (state = 'Anonymous', action) => {
+      switch (action.type) {
+       case 'CHANGE_NAME':
+       return  action.name          /// on ne retourne pas d object.
+       default:
+       return state;
+     }
+    }
+    //HOOBIES
+    let hobbiesReducer = (state = [], action) => {
+      switch (action.type) {
+       case 'ADD_HOBBY':
+       return [                       ///ensuite pour l arr hobbies
+           ...state,               /// on retourne juste state
+           {
+             id: nextHobbyId++,   //ajouter un Id
+             hobby: action.hobby     //ensuite lobj qu on veut dans l arr
+           }
+         ];
+       case 'REMOVE_HOBBY':                        // RETIRER de l arr, ce qu'on ne veut pas
+       return state.filter((hobby) => {             // l arr est sur state
+             return hobby.id !== action.id          // on retourne tout ce qui n'a pas id: 2 finalement
+         })
+       default:
+       return state;
+     }
+    }
+
+  //MOVIES
+  let moviesReducer = (state = [], action) => {
+    switch (action.type) {
+     case 'ADD_MOVIE':
+     return [
+         ...state,                         /// on retourne juste state
+         {
+           id: nextMovieId++,              //ajouter un Id
+           title: action.title,
+           genre: action.genre             //ensuite lobj qu on va dans l arr
+         }
+       ];
+     case 'REMOVE_MOVIE':                        // RETIRER de l arr, ce qu'on ne veut pas
+     return state.filter((movie) => {             // l arr est sur state
+           return movie.id !== action.id          // on retourne tout ce qui n'a pas id: 2 finalement
+       })
+     default:
+     return state;
+   }
+  }
+
+  //quand plusieurs reducer
+  let reducer = redux.combineReducers({
+    name: nameReducer,
+    hobbies: hobbiesReducer,
+    movies: moviesReducer
+  })
+
+  let store = redux.createStore(reducer, redux.compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+  ));
+
+
+  let unsubscribe = store.subscribe(() => {
+    let state = store.getState();
+   console.log('Du nouveau', store.getState())
+  });
+
+  ... le reste sont les dispatch.
+
+  </code></pre></div><div class="section"><h2>Redux, part X , action generators</h2><li>Les generator d actyion, sont de simple fonction, qui retourne un object, le meme object qui va dans les dispatch</li><li>Le but est de pas se retrouver avec 3000 long dispatch dans une page.</li><li>Cela raccourcie de loin le processus, et dans des dispatch plus complex, fera moins d erreur.</li><li>Aussi plus simple a appeler sur des truc async.</li><pre><code>
+  //  un generator , ne prend pas le type en argument, seulement la valeur
+    let changeName = (name) => {
+      return {
+        type: 'CHANGE_NAME',
+        name: name   //en ES6 , si la key et la value est la meme, on peut juste mettre name voir ligne 1143
+         }
+
+  // comparer a un dispatch
+   store.dispatch({
+     type: 'CHANGE_NAME',
+     name: 'Ben'
+   })
+
+// ES6
+let changeName = (name) => {
+  return {
+    type: 'CHANGE_NAME',
+    name
+  }
+
+et le dispatch devient :
+
+store.dispatch(changeName('Buck')); ///bcp plus simple
+
+et
+
+let addHobby = (hobby) => {
+  return {
+    type: 'ADD_HOBBY',
+    hobby
+  }
+};
+ store.dispatch(addHobby('Sauter a la corde'))
+
+
+//REMOVE
+let removeHobby = (id) => {
+  return {
+    type: 'REMOVE_HOBBY',
+    id
+  }
+};
+ store.dispatch(removeHobby(2));
+
+//plusieurs arguments
+let addMovie = (title, genre) => {
+  return {
+    type: 'ADD_MOVIE',
+    title,
+    genre
+  }
+};
+store.dispatch(addMovie('Run lola Run','thriller'))
+
+  </code></pre></div><div class="section"><h2>Redux part XI, async generators</h2><li>La methode est differente, on y va dans l exemple avec un site ipinfo.io qui donne la longitude et lattitude.</li><li>Avec ces donnees, on peut faire une recherche sur google map en ajoutant dans le q=? le query les donnees retrouve</li><li>Le reducer, state sera un objet, on a seulement besoin de deux etats, avant et rechercher le data</li><li>puisque deux etats , deux dispatch sont necessaires, on doit les combiner dans une function.</li><li>je l ai fait en jquery et axios, les deux fonctionnent</li><li>on doit ajouter le reducer a notre redux.combineReducers({</li><li>derniere etape , le subscribe... voir code.</li><pre><code>
+
+    let mapReducer = (state = {isFetching: false, url: undefined}, action) => {
+      switch (action.type) {
+       case 'START_LOCATION_FETCH' :
+       return {
+         isFetching: true,
+         url: undefined
+       }
+       case 'COMPLETE_LOCATION_FETCH' :
+       return {
+         isFetching: false,
+         url: action.url
+       }
+       default:
+        return state;
+      }
+    };
+
+   //on part la le fetch,
+    let startLocationFetch = () => {
+      return {
+        type: 'START_LOCATION_FETCH',
+      }
+    };
+  ///on a l url
+    let completeLocationFetch = (url) => {
+      return {
+        type: 'COMPLETE_LOCATION_FETCH',
+        url
+      }
+    };
+
+puisque deux etats , deux dispatch sont necessaires, on doit les combiner dans une function.
+
+let fetchLocation = () => {
+  store.dispatch(startLocationFetch())  //ouvre le query .. mais fait rien ..
+    $.getJSON('https://ipinfo.io', function(data){  ///va chercher le data
+    let loc = data.loc;                             //log et lat
+    let baseUrl = 'http://maps.google.com?q=';     //fait la moitier de l url
+    store.dispatch(completeLocationFetch(baseUrl + loc))  ///lance le deuxieme dispatch, avec url complet
+  })
+}
+
+//passer 2 dispatch pour du ASYNC
+// let fetchLocation = () => {
+//   store.dispatch(startLocationFetch())  //ouvre le query .. mais fait rien ..
+//     axios.get('https://ipinfo.io').then(function (res) {
+//     let loc = res.data.loc;                             //log et lat
+//     let baseUrl = 'http://maps.google.com?q=';     //fait la moitier de l url
+//     store.dispatch(completeLocationFetch(baseUrl + loc))  ///lance le deuxieme dispatch, avec url complet
+//   })
+// }
+
+
+//quand plusieurs reducer
+let reducer = redux.combineReducers({
+  name: nameReducer,
+  hobbies: hobbiesReducer,
+  movies: moviesReducer,
+  map: mapReducer
+})
+
+et pour voir le resultat dans le subscribe
+
+voir le code dans redux-example
+
+
+  </code></pre></div><div class="section"><h2>Redux part XII, la separation des fichiers</h2><li>un rep actions, reducers, et store... aka configure</li><li>un Add-on de redux a installer pour nous aider, specifiquement pour fetch location qui mele le reducer avec action dans son code : npm install --save-dev redux-thunk</li><li>thunk est un middleware, qu on doit ajouter a la configuration , dans la func configure dans le configureStore.js</li><li>on doit le requirer let thunk = require('redux thunk').default</li><li>Tout nos reducer sont des object, tout sauf un : fetchLocation qui est une function</li><li>thunk permet de passer une function, en enelevant le besoint d avoir un store dans la function et faisant un return fn .. complexe ..</li><li>maintenant au lieu de faire le dispatch dasn la function, avec le middleware , redux est capable de dispatcher les func. donc on l appelle comme les autres obj, avec store.dispatch(fetchLocation());</li><li>C'est important dans la mesure ou tous les dispatch pour du async, doivent se faire de cette maniere...</li><li>L autre option est de ramener dans l app ces actions la (eux avec des func), a cette endroit tout fontionne comme avant.</li><li>Fin de l exemple redux, on retourne au todo pour integrer redux</li><pre><code>
+/// avec thnuk
+export let fetchLocation = () => {
+  return (dispatch, getState) => {
+    dispatch(startLocationFetch())  //ouvre le query .. mais fait rien ..
+      $.getJSON('https://ipinfo.io', function(data){  ///va chercher le data
+      let loc = data.loc;                             //log et lat
+      let baseUrl = 'http://maps.google.com?q=';     //fait la moitier de l url
+     dispatch(completeLocationFetch(baseUrl + loc))  ///lance le deuxieme dispatch, avec url complet
+    })
+  }
+}
+//la config.
+let thunk = require('redux-thunk').default
+let store = redux.createStore(reducer, redux.compose(
+  redux.applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f
+));
+
+et dasn l app
+ store.dispatch(fetchLocation());
+
+VS avant
+
+
+// let fetchLocation = () => {
+//   store.dispatch(startLocationFetch())  //ouvre le query .. mais fait rien ..
+//     $.getJSON('https://ipinfo.io', function(data){  ///va chercher le data
+//     let loc = data.loc;                             //log et lat
+//     let baseUrl = 'http://maps.google.com?q=';     //fait la moitier de l url
+//     store.dispatch(completeLocationFetch(baseUrl + loc))  ///lance le deuxieme dispatch, avec url complet
+//   })
+// }
+fetchLocation()
+
+  </code></pre></div></div><!--fin--><script type="text/javascript" src="app.js?8da044c8fd6cb6d058f5"></script></body></html>

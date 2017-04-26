@@ -47,13 +47,6 @@ TweenMax.set($('.notes'), {
   opacity: 0,
 });
 
-
-// TweenMax.to(body, 2, {
-//     x: 0,
-//     // scale: 1,
-//   opacity: 1,
-//   ease: Power4.easeOut
-// });
 TweenMax.to($('.notes'), 0.7, {
 
     // scale: 1,
@@ -79,10 +72,13 @@ const { render, findDOMNode  } = ReactDOM;
 const { Component } = React
 import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import _ from 'lodash';
-import moment from 'moment';
+
 //import momentFr from './api/momentFr'; je l ai mis en bas
 
 
+
+////APP  todo
+import moment from 'moment';
 import TodoApp from "./components/TodoApp"
 import AddTodo from "./components/AddTodo"
 import Todo from "./components/Todo"
@@ -98,6 +94,44 @@ import Search from "./components/Search"
    </Router>
 ,document.getElementById('MainInterface')
   )
+
+
+    //=================================================================================================================================
+//REDUX video 104 a 116 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// require('./api/redux-example');
+//  //require('./api/redux-todo-example');
+//
+//
+//
+// render(
+//   <h1>redux</h1>,
+//   document.getElementById('MainInterface')
+// )
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //=================================================================================================================================
 
   //=================================================================================================================================
   //=================================================================================================================================
