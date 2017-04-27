@@ -1,9 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 const { render, findDOMNode  } = ReactDOM;
-import Todo from "./Todo"
+let { connect } = require('react-redux');
+//import Todo from "./Todo"
+let Todo = require("./Todo")
 
-const TodoList = React.createClass({
+//TODOLIST, EST LA LISTE DE TOUS LES TACHES.
+
+let TodoList = React.createClass({
   render() {
     let { todos } = this.props;
     if(todos.length === 0){
@@ -14,7 +18,7 @@ const TodoList = React.createClass({
    let renderTodos = () => {
      return todos.map( todo => {
        return (
-         <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+         <Todo key={todo.id} {...todo} /*onToggle={this.props.onToggle}*//>
        );
      });
    }
@@ -26,4 +30,13 @@ const TodoList = React.createClass({
   }
 });
 
-export default TodoList
+
+//export default TodoList
+///on donne a todolist , les todos.
+module.exports = connect(   ///connect, a pour seul arg, state, qui a tout lui. mais on passe juste les todos.
+  (state) => {
+    return {
+      todos: state.todos
+    }
+  }
+)(TodoList)  //a quoi connect donne l acces a todos.

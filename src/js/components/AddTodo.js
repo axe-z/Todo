@@ -2,16 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 const { render, findDOMNode  } = ReactDOM;
 import _ from 'lodash';
+//redux-example
+var { connect } = require('react-redux');
+var actions = require('../actions/actions')
 
-
-const AddTodo = React.createClass({
+export const AddTodo = React.createClass({
   onSubmitTodo(e){
    e.preventDefault();
-   let afaire = _.capitalize(this.refs.todoText.value);
-   if(afaire && afaire.length >= 5 ){
-     this.props.onAddTodo(afaire)
+   let { dispatch } = this.props;        ///va chercher le dispatch
+   let todoText = _.capitalize(this.refs.todoText.value);
+   if(todoText && todoText.length >= 5 ){
+  // this.props.onAddTodo(afaire)
+    dispatch(actions.addTodo(todoText))
      this.refs.todoText.value = '';
-   } else if(afaire && afaire.length < 5){
+   } else if(todoText && todoText.length < 5){
 
      this.refs.todoText.value = 'activité trop courte'
 
@@ -30,4 +34,5 @@ const AddTodo = React.createClass({
   }
 });
 
-export default AddTodo
+ //export default AddTodo
+ export default connect()(AddTodo);

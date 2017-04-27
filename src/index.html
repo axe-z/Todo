@@ -1316,6 +1316,58 @@ fetchLocation()
   </code></pre>
 </div>
 
+<div class="section">
+  <h2>Pour etre sur que nos truc reste immutable, deepfreeze, peut aider</h2>
+  <li>npm install --save-dev deep-freeze-strict</li>
+  <li>ce plugin aide dans KARMA, var df = requir('deep-freeze-strict')</li>
+
+</div>
+
+<div class="section">
+  <h2>React-redux</h2>
+  <li>npm install --save-dev react-redux , les deux react comme redux fonctionne individuellement, mais pour les faire fonctionner ensemble on doit avoir, react-redux</li>
+  <li>En finale, Apres avoir faire ce qu il faut pour gerer dans redux, chose qu on faisait deja dans react, on va blender le tout...</li>
+  <pre><code>
+
+  </code></pre>
+</div>
+
+<div class="section">
+  <h2>Le Provider</h2>
+  <li>Le point d utiliser redux, est de pouvoir enlever, les callback, qui passe le data de parents a children, et permet, aisement par des dispatch d' actions, de faire le boulot a un seul endroit.</li>
+  <li>le Provider, fait le pont entre le store et le component, let { Provider } = require('react redux'); </li>
+  <li>le Provider, se gere comme un component et demande une balise dans le render, seul attribut necessaire, le store, pour qu'il sache ou regarder la configuration </li>
+  <pre><code>
+    render
+   Provider store={store}> ///passe le nom du store, on l an nomme store tout simplement...
+       TodoApp />
+      Tout ce qui est children de Provider aura acces au store.
+     /Provider>
+  </code></pre>
+</div>
+
+<div class="section">
+  <h2>Le Provider, part II</h2>
+   <li>notre app est sur TodoApp , et tout les handletruc y sont , et c'est ici que le changement va se produire. </li>
+   <li>on va eliminer dans totoapp, ce que les actions faites dans redux va s occuper, donc first , enleve handleToggle</li>
+   <li>Le provider permet de passer le data , mais les componenent on besoin de dire ce qu il ont de besoin.</li>
+   <li>Maintenant que todolist ne recois plus le todos comme props, avec CONNECT , de react -redux , on va pouvoir dire ce qu il a de besoin.</li>
+  <pre><code>
+//pour dire quel props sera disponnible pour todolist :
+
+module.exports = connect(
+  (state) => {
+    return {
+      todos: state.todos
+    }
+  }
+)(TodoList)
+
+
+
+  </code></pre>
+</div>
+
 
 
 
