@@ -82,35 +82,37 @@ let { Provider } = require('react-redux');
 import moment from 'moment';
 import TodoApp from "./components/TodoApp"
 import AddTodo from "./components/AddTodo"
-//import Todo from "./components/Todo"
-//import TodoList from "./components/TodoList"
-let Todo = require("./components/Todo")
-let TodoList = require("./components/TodoList")
+import Todo from "./components/Todo"
+import TodoList from "./components/TodoList"
+
 import Search from "./components/Search"
 
-//let actions = require('./actions/actions')
 import * as actions from './actions/actions';
 let store = require('./store/confStore').configure();
+
 
 store.subscribe(() => {
   console.log('Nouvel action', store.getState());
 });
 
-store.dispatch(actions.addTodo('faire la vaiselle'))
-store.dispatch(actions.setSearchText('vaisselle'))
-store.dispatch(actions.toggleShowCompleted())
+
+//pour se faire du data
+//store.dispatch(actions.addTodo('Faire la vaisselle'))
+//store.dispatch(actions.addTodo('Fuire la souffleuse'))
+//store.dispatch(actions.setSearchText('vaisselle'))
+//store.dispatch(actions.toggleShowCompleted())
 
 
  render (
    <Provider store={store}>
      <TodoApp />
-
+     {/* <Router history={hashHistory}>       ca fonctionne aussi avec le router
+       <Route path="/" component={ TodoApp }>
+         <IndexRoute  component={TodoApp} />
+       </Route>
+     </Router> */}
    </Provider>
-  //  <Router history={hashHistory}>
-  //    <Route path="/" component={ TodoApp }>
-  //      <IndexRoute  component={TodoApp} />
-  //    </Route>
-  //  </Router>
+
 ,document.getElementById('MainInterface')
   )
 

@@ -7,8 +7,8 @@ import momentFr from '../api/momentFr';
 let { connect } = require('react-redux');
 import * as actions from './../actions/actions';
 
-
- let Todo = React.createClass({
+//
+export let Todo = React.createClass({
   render() {
  let { id, text, completed, createdAt, completedAt, dispatch } = this.props ///ajout de dispatch
 let classNameNom = completed ? 'complet ' : '';
@@ -41,4 +41,6 @@ let classNameNom = completed ? 'complet ' : '';
 
 //export default Todo
 //on donne a todo accet a dispatch pour qu il lance des actions
-module.exports = connect()(Todo);
+export default connect()(Todo);
+
+ 

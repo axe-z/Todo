@@ -30,8 +30,9 @@ return $.isArray(todos) ? todos : [];  ///check avant de retourner que c est un 
   },
 
 ///FILTER///////////////////////////////////////////////////////////////////////////
- filterTodos(todos, showCompleted, searchText,  completedAt ){
+ filterTodos(todos, showCompleted, searchText ){
    var filteredTodos = todos;
+  // console.log(filteredTodos)
   //filter par showCompleted
   //if(showCompleted)
  filteredTodos = filteredTodos.filter(function (todo){
@@ -60,10 +61,36 @@ filteredTodos.sort((a,b) => {
 
 
 
-   return filteredTodos; //par default si aucune option
- }
+  return filteredTodos; //par default si aucune option
+}
 
-
+ // filterTodos: function (todos, showCompleted, searchText) {
+ //   var filteredTodos = todos;
+ // console.log('debut', filteredTodos)
+ //   // Filter by showCompleted
+ //   filteredTodos = filteredTodos.filter((todo) => {
+ //     return !todo.completed || showCompleted;
+ //   });
+ //    console.log('showCompleted', filteredTodos)
+ //   // Filter by searchText
+ //   filteredTodos = filteredTodos.filter((todo) => {
+ //     var text = todo.text.toLowerCase();
+ //     return searchText.length === 0 || text.indexOf(searchText) > -1;
+ //   });
+ //  console.log('searchText', filteredTodos)
+ //   // Sort todos with non-completed first
+ //   filteredTodos.sort((a, b) => {
+ //     if (!a.completed && b.completed) {
+ //       return -1;
+ //     } else if (a.completed && !b.completed) {
+ //       return 1;
+ //     } else {
+ //       return 0;
+ //     }
+ //   });
+ //    console.log('sort', filteredTodos)
+ //   return filteredTodos;
+ // }
 
 
 ////////////////////////////////////////////////////////////////////////////////

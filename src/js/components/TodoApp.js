@@ -6,10 +6,9 @@ import moment from 'moment';
 import momentFr from '../api/momentFr';
 
 import AddTodo from "./AddTodo"
-//import Todo from "./Todo"
-let Todo = require("./Todo")
-//import TodoList from "./TodoList"
-let TodoList = require("./TodoList")
+import Todo from "./Todo"
+import TodoList from "./TodoList"
+
 import Search from "./Search"
 let TodoAPI = require('../api/TodoAPI');
 
