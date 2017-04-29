@@ -27,7 +27,7 @@ let classNameNom = completed ? 'complet ' : '';
         <label className='todo'>
           <input type="checkbox" checked={completed}  onChange={ () => {
             /*this.props.onToggle(id)*/  //on fait une simple fn sans nom. ca marche aussi, on aurait pu faire une fn aussi.
-            dispatch(actions.toggleTodo(id))
+            dispatch(actions.startToggleTodo(id, !completed))
           }}/>
           <p className={classNameNom}>{text}</p>
           <p className="date">{renderDate(id)}</p>

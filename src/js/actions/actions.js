@@ -48,12 +48,49 @@ export var addTodos = (todos) => {
   };
 };
 
-export var toggleTodo = (id) => {
+export let startAddTodos = () => {
+  return (dispatch, getState) => {
+    let todosRef = firebaseRef.child('todos');
+    todosRef.once('value')
+    .then((snapshot) => {
+      let todos = snapshot.val() || {};
+      let parseTodos = [];
+      Object.keys(todos).forEach( todoId  => {
+        parseTodos.push({
+          id: todoId,
+          ...todos[todoId]
+        });
+      });
+      dispatch(addTodos(parseTodos));
+    });
+  }
+}
+
+
+
+export var updateTodo = (id, updates) => {
   return {
-    type: 'TOGGLE_TODO',
-    id
+    type: 'UPDATE_TODO',
+    id,
+    updates
   };
 };
+
+export var startToggleTodo = (id, completed) => {
+  return (dispatch, getState) => {
+    let todoRef = firebaseRef.child(`todos/${id}`)
+    let updates = {
+      completed,
+      completedAt: completed ? moment().unix() : null
+    };
+    return todoRef.update(updates)         //le return permet de chainer, pour les tests
+    .then(() => {
+      dispatch(updateTodo(id, updates))
+    })
+  }
+};
+
+
 
 
 

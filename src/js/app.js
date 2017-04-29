@@ -98,15 +98,20 @@ let store = require('./store/confStore').configure();
 
 let TodoAPI = require('./api/TodoAPI');
 
-store.subscribe(() => {
-  var state = store.getState();
-  console.log('New state', state);
-   TodoAPI.setTodos(state.todos);
-});
+//va aller cherche les data sur db
+store.dispatch(actions.startAddTodos())
 
- var initialTodos = TodoAPI.getTodos();
-// console.log(initialTodos)
-store.dispatch(actions.addTodos(initialTodos));
+
+///avec ceci on allait chercher les todos sur la machine et non pas le db.
+// store.subscribe(() => {
+//   var state = store.getState();
+//   console.log('New state', state);
+//    TodoAPI.setTodos(state.todos);
+// });
+//
+//  var initialTodos = TodoAPI.getTodos();
+// // console.log(initialTodos)
+// store.dispatch(actions.addTodos(initialTodos));
 
 
 //-------------- pas besoin
