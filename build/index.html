@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>React</title><link rel="icon" type="image/png" href="favicon.png"><link href="app.css?c3be5f73cfbf5b68c4bf" rel="stylesheet"></head><body><!-- <h1>React</h1> --><div id="MainInterface"></div><div id="app"></div><div id="redux"></div><div class="notes"><div class="section"><h1 class="center">Notes sur REACT / REDUX / KARMA / FIREBASE</h1><h2>React..</h2><li>A la base on a juste un render a lancer pour avoir du jsx a l ecran</li><li>React.createClass vs extends React.Component voir lien ici : :::::<a href="http://stackoverflow.com/documentation/reactjs/6371/react-createclass-vs-extends-react-component#t=201611112010580710903"></a></li><li>seulement un container doit etre retourné.</li><li>componentDidMount est une maniere d 'avoir acces au debut '</li><li>lui suggere de faire une variable avec nos props et les pointer vers this. props. valeur et dans le jsx utiliser que le nom de variable, ca fait du sens...</li><li>Les refs: permet de mettre un hook, pour acceder a un tag, et en tirer sa valeur par exemple. refs est un objet, et on accede a ses nom par dot notation</li><li>le state est l objet qui produit un refresh, doit etre creer d'avance, les props eux se font initialiser dans le render , sont read only, et mis sur le component terminé, le state est dans le corps du component et est read , write. BRef un component ne modifie pas ses props, mais modifie continuellement son state.</li><li>On les creer avec getInitialState en createClass, en es6, juste l object dans le constructor.</li><li>il est possible de faire des raccorci, puisque props est une onbjet let p = this.props , ensuite p.nom == this.props.nom</li><li>deux function sont importante ici a present.getInitialState et getInitialState, function qui return un obj de key -> value</li></div><div class="section"><h2>Animer React avec Tweenmax</h2><li>Dans componentDidMount, on doit selectionner le node ( le contenant unique du component) node = ReactDOM findDOMNode (this)</li><li>pour animer qu un seul des children, on doit le trouver ndas l index de children. et en faire une variable.</li><li>Ensuite , meme chose qued habite avec GSAP</li></div><div class="section"><h2>Suite React, avoir plusieurs components</h2><li>Quand et ou diviser ses components, ici la form devrait etre ailleurs, le greeting, l autre.</li><li>il est suggere de faire une version statique bien divisee au depart et ensuite ajouter les fonctionnalites.</li><li>Decider si prop ou state: simplement se demander si une valeur sera modifiee, si oui, STATE, sinon, props.</li></div><div class="section"><h2>Envoyer du data d'un component externe au container</h2><li>Le container doit par exemple, sur un onchange, ou submit, appeler une function locale, cette fonction locale elle doit traiter le data une fois fait, doit la passer au container (on parle du component prinicipale) par un propriete, une prop.</li><li>dans l'externe on a ici par exemple une fonction onFormSubmit , cette fonction pour envoyer ca au container a l'aide d une props function</li><li>dans l'instance du component externe dans le container nomducomponentexterne on y met une props qui elle meme lance une function locale sur le contianer, qui change le state pour creer l ajustement , le rafraichissement.</li></div><div class="section"><h2>Presention component VS container component</h2><li>Un presentation component est un component sans state, il ne fait qu afficher ses props.</li><li>un container compo. lui a ses state et va avoir les methodes qui s en suivent</li><li>Si on contruit un objet pour les valeurs de state a changer, au lieu de faire des key value, on peut passer l object complet.</li></div><div class="section"><h2>division des components</h2><li>Il devient plus facile de lire les fichieers une fois separe. faire un folder component, ensuite , importer react dans les fichiers du meme nom que les component</li><li>des const doivent se faire exporter au debut sans default ou a la fin avec le default, et non pas au moment de sa creation avec default. default est un seul export par module</li></div><div class="section"><h2>Routing</h2><li>le contenant est le Router, dans lui des routes , et les route sont logique a l ecran, dans le main,si on veut garder, mais aller a une autre page qui demande a ce que main reste, on fait le lien entre les deux bout de main et y mettre /about. l autre props est component et appelle le nom du component que l on veut a ce path.</li><li>IndexRoute, est pour celui par defaut si on veut, si le hash n'est pas juste, mettons que je tape abOt au lieu d about, ca ira a l index route. Compliquer, mais si on avait que des route, le / ne chargerait rien, mais la il a un children , dans l indexroute. Donc le indexroute devient le par defaut... avec indexroute s appelait defaultroute.. ce qui etait plus clair</li><li>Link au lieu de a link, en majuscule le link, mais il est possible d'utiliser des a avec href de #/about , et ca fera le meme chemin. On utilise Link parce que nous avons la possibilite de stylyser specifiquement pour la page que l on veut.</li><li>Aussi avec actviveClass, on peut determiner le defaut, et le style.</li><li>Quand on utilise indexRoute, dans le router, sur le component en question, le lien du nav sera toujours actif avec Link, il faut utiliser indexLink</li></div><div class="section"><h2>Es6 promises</h2><li>Voici un leger rappel sur les promesses</li><pre><code>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>React</title><link rel="icon" type="image/png" href="favicon.png"><link href="app.css?47e0c77f79479eeccc59" rel="stylesheet"></head><body><!-- <h1>React</h1> --><div id="MainInterface"></div><div id="app"></div><div id="redux"></div><div class="notes"><div class="section"><h1 class="center">Notes sur REACT / REDUX / KARMA / FIREBASE</h1><h2>React..</h2><li>A la base on a juste un render a lancer pour avoir du jsx a l ecran</li><li>React.createClass vs extends React.Component voir lien ici : :::::<a href="http://stackoverflow.com/documentation/reactjs/6371/react-createclass-vs-extends-react-component#t=201611112010580710903"></a></li><li>seulement un container doit etre retourné.</li><li>componentDidMount est une maniere d 'avoir acces au debut '</li><li>lui suggere de faire une variable avec nos props et les pointer vers this. props. valeur et dans le jsx utiliser que le nom de variable, ca fait du sens...</li><li>Les refs: permet de mettre un hook, pour acceder a un tag, et en tirer sa valeur par exemple. refs est un objet, et on accede a ses nom par dot notation</li><li>le state est l objet qui produit un refresh, doit etre creer d'avance, les props eux se font initialiser dans le render , sont read only, et mis sur le component terminé, le state est dans le corps du component et est read , write. BRef un component ne modifie pas ses props, mais modifie continuellement son state.</li><li>On les creer avec getInitialState en createClass, en es6, juste l object dans le constructor.</li><li>il est possible de faire des raccorci, puisque props est une onbjet let p = this.props , ensuite p.nom == this.props.nom</li><li>deux function sont importante ici a present.getInitialState et getInitialState, function qui return un obj de key -> value</li></div><div class="section"><h2>Animer React avec Tweenmax</h2><li>Dans componentDidMount, on doit selectionner le node ( le contenant unique du component) node = ReactDOM findDOMNode (this)</li><li>pour animer qu un seul des children, on doit le trouver ndas l index de children. et en faire une variable.</li><li>Ensuite , meme chose qued habite avec GSAP</li></div><div class="section"><h2>Suite React, avoir plusieurs components</h2><li>Quand et ou diviser ses components, ici la form devrait etre ailleurs, le greeting, l autre.</li><li>il est suggere de faire une version statique bien divisee au depart et ensuite ajouter les fonctionnalites.</li><li>Decider si prop ou state: simplement se demander si une valeur sera modifiee, si oui, STATE, sinon, props.</li></div><div class="section"><h2>Envoyer du data d'un component externe au container</h2><li>Le container doit par exemple, sur un onchange, ou submit, appeler une function locale, cette fonction locale elle doit traiter le data une fois fait, doit la passer au container (on parle du component prinicipale) par un propriete, une prop.</li><li>dans l'externe on a ici par exemple une fonction onFormSubmit , cette fonction pour envoyer ca au container a l'aide d une props function</li><li>dans l'instance du component externe dans le container nomducomponentexterne on y met une props qui elle meme lance une function locale sur le contianer, qui change le state pour creer l ajustement , le rafraichissement.</li></div><div class="section"><h2>Presention component VS container component</h2><li>Un presentation component est un component sans state, il ne fait qu afficher ses props.</li><li>un container compo. lui a ses state et va avoir les methodes qui s en suivent</li><li>Si on contruit un objet pour les valeurs de state a changer, au lieu de faire des key value, on peut passer l object complet.</li></div><div class="section"><h2>division des components</h2><li>Il devient plus facile de lire les fichieers une fois separe. faire un folder component, ensuite , importer react dans les fichiers du meme nom que les component</li><li>des const doivent se faire exporter au debut sans default ou a la fin avec le default, et non pas au moment de sa creation avec default. default est un seul export par module</li></div><div class="section"><h2>Routing</h2><li>le contenant est le Router, dans lui des routes , et les route sont logique a l ecran, dans le main,si on veut garder, mais aller a une autre page qui demande a ce que main reste, on fait le lien entre les deux bout de main et y mettre /about. l autre props est component et appelle le nom du component que l on veut a ce path.</li><li>IndexRoute, est pour celui par defaut si on veut, si le hash n'est pas juste, mettons que je tape abOt au lieu d about, ca ira a l index route. Compliquer, mais si on avait que des route, le / ne chargerait rien, mais la il a un children , dans l indexroute. Donc le indexroute devient le par defaut... avec indexroute s appelait defaultroute.. ce qui etait plus clair</li><li>Link au lieu de a link, en majuscule le link, mais il est possible d'utiliser des a avec href de #/about , et ca fera le meme chemin. On utilise Link parce que nous avons la possibilite de stylyser specifiquement pour la page que l on veut.</li><li>Aussi avec actviveClass, on peut determiner le defaut, et le style.</li><li>Quand on utilise indexRoute, dans le router, sur le component en question, le lien du nav sera toujours actif avec Link, il faut utiliser indexLink</li></div><div class="section"><h2>Es6 promises</h2><li>Voici un leger rappel sur les promesses</li><pre><code>
 
      function addPromesse(a,b){
       return new Promise((res,rej) => {
@@ -299,7 +299,7 @@ moment().format('YYYY [escaped] YYYY');     // 2017 escaped 2017
 
    console.log('momentstamp', momentstamp.format("MMMM Do, YYYY / h:mm "))  //momentstamp lundi, 24 avr. 17 / 8:18
 
-  </code></pre></div><div class="section"><h2>Redux - la base</h2><li>En gros redux aide a maintenir des States</li><li>et de la maniere que nos component sont fait avant redux, on fait quelque chose sur un component, et le parent fini le boulot par un props (ou le voir a l inverse), rendant les components peu reutilisable.</li><li>Donc chaque component en ce moment depend d un autre, en passant l info par une fonction qui devient une props et demande donc a etre coupler avec un autre fichier. on peut faire mieux avec redux.</li><li>donc avec un STORE, redux conserve ce qui est neccessaire, avec du simple JS, et des actions.</li><li>redux peut etre utilise sans react, mais il vont bien ensemble, aussi, redux a un paquet de middleware pour tous les situations, et est bcp bcp simple que flux, lui de facebook.</li><pre><code>
+  </code></pre></div><div class="section"><h2>Redux - la base</h2><div class="image"></div><li>En gros redux aide a maintenir des States</li><li>et de la maniere que nos component sont fait avant redux, on fait quelque chose sur un component, et le parent fini le boulot par un props (ou le voir a l inverse), rendant les components peu reutilisable.</li><li>Donc chaque component en ce moment depend d un autre, en passant l info par une fonction qui devient une props et demande donc a etre coupler avec un autre fichier. on peut faire mieux avec redux.</li><li>donc avec un STORE, redux conserve ce qui est neccessaire, avec du simple JS, et des actions.</li><li>redux peut etre utilise sans react, mais il vont bien ensemble, aussi, redux a un paquet de middleware pour tous les situations, et est bcp bcp simple que flux, lui de facebook.</li><pre><code>
 //exemple de setting redux
 
  let reduxState = {
@@ -364,7 +364,7 @@ let action: {
     console.log(changePropPur(startValue))///garde dave Object {name: "Dave", age: 40}
     console.log(res) ///garde dave Object {name: "Dave", age: 40}
 
-  </code></pre></div><div class="section"><h2>Redux, part III , la decouverte et le reducer et du store</h2><li>J'ai du faire un REQUIRE, import ne fonctionnait pas, il faut : import * as redux from 'redux'</li><li>Pour creer un store, il faut un fn pure. la fonction reducer, une arrow function vide</li><li>le store a donc besoin du reducer , et le reducer , a besoin du state qu il doit changer et l action qu il doit prendre</li><li>le reducer, sa forme doit avoir : un objet par default pour le state et retourne un state a la fin. bravo</li><li>donc le store est un simple object, avec endedans les states</li><pre><code>
+  </code></pre></div><div class="section"><h2>Redux, part III , la decouverte et le reducer et du store</h2><div class="image"></div><li>J'ai du faire un REQUIRE, import ne fonctionnait pas, il faut : import * as redux from 'redux'</li><li>Pour creer un store, il faut un fn pure. la fonction reducer, une arrow function vide</li><li>le store a donc besoin du reducer , et le reducer , a besoin du state qu il doit changer et l action qu il doit prendre</li><li>le reducer, sa forme doit avoir : un objet par default pour le state et retourne un state a la fin. bravo</li><li>donc le store est un simple object, avec endedans les states</li><pre><code>
     import * as redux from 'redux'
     console.log('test de redux')
 
@@ -483,7 +483,7 @@ let currentState = store.getState();
 
 
 ///EXEMPLE SUR DEUX ETATS///////////////EXEMPLE SUR DEUX ETATS////////////
-  </code></pre></div><div class="section"><h2>Redux, part V , subscribe</h2><li>Pour remplacer les console de getState pour savoir si les choses on changes.</li><li>a l exterieur plus besoin de mettre un paquet de console.log, pour tenir a jour les modifications</li><li>Des qu'un changement se produit sur le state, on peut le veriifier , en regardant dans le subscribe, state.truc qu on veut savoir.</li><li>subscribe par defaut retourne un fonction. Cette fonction permet de se unsubcriber . donc on peut l associer directement a unsubscrib : let unsubscribe = store.subscribe(()</li><pre><code>
+  </code></pre></div><div class="section"><h2>Redux, part V , subscribe</h2><div class="image"></div><li>Pour remplacer les console de getState pour savoir si les choses on changes.</li><li>a l exterieur plus besoin de mettre un paquet de console.log, pour tenir a jour les modifications</li><li>Des qu'un changement se produit sur le state, on peut le veriifier , en regardant dans le subscribe, state.truc qu on veut savoir.</li><li>subscribe par defaut retourne un fonction. Cette fonction permet de se unsubcriber . donc on peut l associer directement a unsubscrib : let unsubscribe = store.subscribe(()</li><pre><code>
 
     let unsubscribe = store.subscribe(() => {
       let state = store.getState();
@@ -505,7 +505,7 @@ let currentState = store.getState();
       window.devToolsExtension ? window.devToolsExtension() : f => f
     ));
 
-  </code></pre></div><div class="section"><h2>Redux part VI, dealer avec les arr d'obj</h2><li>Il est important de comprendre pourquoi, on ...state ou ...state.hobbies, bien qu au debut, il n 'a rien a ramener, il faut comprendre que ce loop va se faire plusieurs fois, a chaque dispatch, donc ...state, ou autre, est la pour ne pas perdre ce qui etait la avant, avec le dispatch , on ne veut pas repartir a zero, mais c'est une progression plutot.</li><li>Il est une bonne idee avec les arr, de se faire un systeme d'Id. plus facile se retrouver par la suite.</li><pre><code>
+  </code></pre></div><div class="section"><h2>Redux part VI, dealer avec les arr d'obj</h2><div class="image"></div><li>Il est important de comprendre pourquoi, on ...state ou ...state.hobbies, bien qu au debut, il n 'a rien a ramener, il faut comprendre que ce loop va se faire plusieurs fois, a chaque dispatch, donc ...state, ou autre, est la pour ne pas perdre ce qui etait la avant, avec le dispatch , on ne veut pas repartir a zero, mais c'est une progression plutot.</li><li>Il est une bonne idee avec les arr, de se faire un systeme d'Id. plus facile se retrouver par la suite.</li><pre><code>
  ES6 avec l extentiation ...
 
  let stateDefault = {
@@ -855,4 +855,290 @@ module.exports = connect(
 
 
 
-  </code></pre></div></div><!--fin--><script type="text/javascript" src="app.js?c3be5f73cfbf5b68c4bf"></script></body></html>
+  </code></pre></div><div class="image"></div><div class="section"><h2>FIREBASE</h2><li>je n'ai pas commente le transafere des function du todoapp en action dispatchee au store, il ne reste presque plus rien dans l app react, et la DB est presentement sur localstorage... mais on peut faire mieux... FIREBASE</li><li>La particularite de ce genre de DB, ca utilise un lexique json, au lieu du sql normal.. donc plus gpret du JS que de excell...</li><li>Malheureusement , c 'est fait par google...</li><li>Donc facile de passer de localstorage a ca.. a cause du js.</li><li>il faut un compte google pour ouvrir un projet et c'est simple</li><li>pour le lien, comme heroku, ou Git, il nous faut installer un truc npm: npm install --save firebase</li><pre><code>
+    https://firebase.google.com/
+
+npm install --save firebase
+
+  </code></pre></div><div class="section"><h2>FIREBASE, part II, comment ca marche..</h2><li>Dans api. faire un folder firebase, et un index.js, dans celui ci importer firebase, de npm</li><li>Maintneant sur le SITE de google/firebase, au menu princ. dans les 3 boutons, le dernier : Ajouter Firebase à votre application Web</li><li>copier, le tag config, et copier dnas le index.js</li><li>du Mp du site, allez a database, on va setter du stock... dans regles en haut, "rules": { ".read": true, ".write": true , donc c'est tres trop ouvert, mais pour le test , ca ira.</li><li>voici les config dans index.</li><li>linker par un simple import : mport './api/firebase/index'; , on a pas besoin de reference juste la config..</li><li>Sur le site maintenant, on voit le todo App transfere par magie, sans avoir a rien faire d autre que de rouler l app.</li><pre><code>
+i port firebase from 'firebase';
+
+    var config = {
+      apiKey: "AIzaSyBwwo23r7NuCSsLnYd_fpemx1ogEeef8dU",
+      authDomain: "axe-z-todo-app.firebaseapp.com",
+      databaseURL: "https://axe-z-todo-app.firebaseio.com",
+      projectId: "axe-z-todo-app",
+      storageBucket: "axe-z-todo-app.appspot.com",
+      messagingSenderId: "618754070386"
+    };
+    firebase.initializeApp(config);
+
+    firebase.database().ref().set({
+      app: 'Todo App'
+    })
+  </code></pre></div><div class="section"><h2>FIREBASE, part III, et SET</h2><li>Tout se transfere real time, avec le set, on cree un tree immediat, malheureusement, on ne peut pas appeler different set, le deuxieme sur un page va supprimer ce que le premier aura fait, donc UN SEUL SET.</li><li>Parcontre, on peut creer different route avec firebase.child, ainsi avoir plusieurs 'SET'</li><li>Il prend des string et des objects, Et APRES SET({}) on se fait retourner un promesse, donc then() est possible.</li><pre><code>
+    //premier setup
+    firebase.database().ref().set({
+      app: 'Todo App',
+      isRunning: true,
+      user: {
+        name: 'Axe-z',
+        age: 1
+      }
+    })
+
+
+//AVEC child
+let firebaseRef = firebase.database().ref();  //pour sauver du tmeps ...
+
+firebaseRef.set({
+  app: 'Todo App',
+  isRunning: true,
+  user: {
+    name: 'Axe-z',
+    age: 1
+  }
+})
+
+firebaseRef.child('user').set({     //va ecraser seulement ce que dans user, axe-z devient mike, et pu d age.
+ name: 'Mike'
+})
+donne ca ..
+{
+  "app" : "Todo App",
+  "isRunning" : true,
+  "user" : {
+    "name" : "Mike"
+  }
+}
+
+//promesse
+
+firebaseRef.set({
+  app: 'Todo App',
+  isRunning: true,
+  user: {
+    name: 'Axe-z',
+    age: 1
+  }
+}).then( () => {
+ console.log('bravo')
+}, (e) => {
+  console.log(e)
+});
+  </code></pre></div><div class="section"><h2>FIREBASE, part IV updater sans wiper le data: update</h2><li>Pour linstant on a aucune maniere d updater une valeur sans faire du dommage autour de lui, set, est bon pour setter les chose en place, mais il n'est pas fait pour updater. UPDATE</li><li>firebaseRef.update({ce qu'on veut updater}), est la solution. c'est fucking simple.</li><li>pour updater un objet, c'est different, il faut, utiliser les multi-path update, dans un string, on rentrant le path:'app/version': '0.0.3' , l update se fait parfaitement.</li><li>avec le child on peut aller a update, c'est fort simple. il reste a apprendre le delete maintenant...</li><pre><code>
+    ///update
+  let firebaseRef = firebase.database().ref();
+
+    firebaseRef.set({
+      app: {
+        name: 'Todo App',
+        version: '0.0.1'
+      },
+      isRunning: true,
+      user: {
+           name: 'AXE-Z',
+           age: 2
+       }
+    })
+
+    firebaseRef.update({
+        isRunning : false,
+    })
+
+//multi-path update//multi-path update//multi-path update//multi-path update
+firebaseRef.update({
+'app/name': 'Todo React app',
+'app/version' : '0.0.3'
+})
+//multi-path update//multi-path update//multi-path update//multi-path update
+firebaseRef.update({
+'app/name': 'Todo React app',
+'user/name' : 'axe-z'
+}).then(() => {
+  console.log('bravo')
+}).catch((e) => {
+  console.log(e)
+})
+
+
+
+//sinon plus vite
+firebaseRef.child('app').update({
+   name: 'React Todo app',
+   version: '0.0.2'
+}).then(() => {
+  console.log('bravo')
+}).catch((e) => {
+  console.log(e)
+})
+  </code></pre></div><div class="section"><h2>FIREBASE, part V, detruire , destruction !!</h2><li>remove fobnction avec child, donc il est tres simple d effacer quoi que ce soit</li><li>on peut aussi avec update, retirer des chose, donc dans un seul call, updater et retirer, en mettant la valeur a NULL</li><pre><code>
+  let firebaseRef = firebase.database().ref();
+
+  //REMOVE
+  // firebaseRef.remove() // detruit TOUT mouhahahahha tuuf tuff .
+
+  firebaseRef.child('user/age').remove()   //detruit seulement l age
+
+
+ //AVEC NULL
+  firebaseRef.update({
+    'user/age': 20, ///va le remettre
+    isRunning: null    ///va le deleter
+  })
+
+  firebaseRef.update({
+    'salaire/paye': 20000 ///va le setter , meme si pas la avant, update ajoute aussi.
+  })
+  </code></pre></div><div class="section"><h2>FIREBASE, part VI, ramenr la base de donnees: ONCE</h2><li>Avec firebaseRef.once('value') on recoit une promesse, avec le then, on recoit un truc, qu ils appelle snapshot, et a ce truc, il y a une methode qui se nomme SNAPSHOT.VAL(), qui retourne en un objet, tout le data dispo en dot notation</li><li>once lui aussi fonctionne avec once. donc si on veut que l info de app...</li><li>SNAPSHOT.key , donne le nom de l objet du query</li><li>bref .once('value') est super parce qu elle renvoit une promesse, mais y a autre chose .. on()</li><pre><code>
+let firebaseRef = firebase.database().ref();
+//ramener le database
+firebaseRef.once('value')
+.then((snapshot) => {
+  console.log(snapshot.val())  //Object {app: Object, salaire: Object, user: Object}
+})
+.catch(e => {
+  console.log('marche pas', e)
+})
+
+//avec child
+firebaseRef.child('app').once('value')
+.then((snapshot) => {
+  console.log(snapshot.val())   //Object {name: "Todo React app", version: "0.0.1"} "app"
+})
+.catch(e => {
+  console.log('marche pas', e)
+})
+
+  </code></pre></div><div class="section"><h2>FIREBASE, part VII, on() et off()</h2><li>on() est un genre de watch, et ne retourne pas une promesse, donc demande un callback.</li><li>fonctionne avec child, et va garder l oeil sur la selection, et lancer le callback, quand sa selection est touchee</li><pre><code>
+let firebaseRef = firebase.database().ref();
+
+//ON('value')
+    firebaseRef.child('salaire').on('value', (snapshot) => {
+      console.log('a la valeur', snapshot.val())
+    })
+
+    firebaseRef.update({   // active le on.
+      'salaire/paye': 40000
+    })
+
+    firebaseRef.update({    /// n active PAS le on
+      'user/age': 30,
+    })
+
+    firebaseRef.update({   // active le on.
+      'salaire/paye': null
+    })
+
+
+    //NOMMER LE CALLBACK
+    let logData = (snapshot) => {
+      console.log('value', snapshot.val())
+    };
+
+    firebaseRef.on( 'value', logData );
+
+    firebaseRef.update({   //log
+      'salaire/paye': 60000
+    });
+
+    firebaseRef.off('value', logData)  //va seulement arreter d ecouter ceux qui ont SE logdata
+
+    firebaseRef.update({    //log pas
+      'salaire/paye': 80000
+    });
+  </code></pre></div><div class="section"><h2>FIREBASE, part VIII, LES ARRAYS</h2><li>Des problemes se pose d ecriture d array, donc un array d objet, n a en js aucun key sinon que [0] [1] pour la position.</li><li>donc dnas firebase, on doit s y prendre autrement ... avec push({}) et on l entre sous la forme d object d objet, au lieu d array d objet.</li><li>et chaque object dans la fausse array ( { ici von les obj } ) doivent avoir un genre d'id en string</li><li>pour envoyer un array, il faut la pusher, un peu comme en js.</li><li>firebase va faire le id unique lui meme</li><pre><code>
+
+    firebaseRef.set({
+      app: {
+        name: 'Todo App',
+        version: '0.0.1'
+      },
+      isRunning: true,
+      user: {
+           name: 'AXE-Z',
+           age: 2
+       }
+     });
+
+
+    let noteRef = firebaseRef.child('notes');
+
+    let newNoteRef = noteRef.push();
+
+    newNoteRef.set({
+      text: 'Walk the dog'
+    })
+
+    //plus vite , on peut skipper le set.
+    noteRef.push({
+      text: 'ferme la porte'
+    });
+console.log(newNoteRef.key) //sort le premier id
+    //resultat:
+    // {
+    //   "app" : {
+    //     "name" : "Todo App",
+    //     "version" : "0.0.1"
+    //   },
+    //   "isRunning" : true,
+    //   "notes" : {
+    //     "-Kiq3p0wkC4trP5UUuaY" : {
+    //       "text" : "Walk the dog"
+    //     },
+    //     "-Kiq3p0xXsj4mtDaT-Ax" : {
+    //       "text" : "ferme la porte"
+    //     }
+    //   },
+    //   "user" : {
+    //     "age" : 2,
+    //     "name" : "AXE-Z"
+    //   }
+    // }
+
+
+
+  </code></pre></div><div class="section"><h2>Y a pas just 'value' CHILD_ADDED CHILD_CHANGER CHILD_REMOVED</h2><li>D'autre type de event listener... si on veut</li><li>Reactif meme si on va sur le database du site et modifier, on aura un message si on change ou delete.</li><pre><code>
+
+    let todosRef = firebaseRef.child('todos');
+
+    ///listeners
+    todosRef.on('child_added', (snap) => {
+      console.log('snap added', snap.key, snap.val())
+    })
+
+    todosRef.on('child_changed', (snap) => {
+      console.log('snap changed', snap.key, snap.val())
+    })
+
+    todosRef.on('child_removed', (snap) => {
+      console.log('snap removed', snap.key, snap.val())
+    })
+
+    todosRef.push({
+      text: 'apprendre firebase'
+    });
+
+    todosRef.push({
+      text: 'finaliser l app'
+    });
+
+    todosRef.push({
+      text: 'connecter React a firebase'
+    });
+
+    //donne =
+    // snap added -Kiq9db4Arafyc6tjIG5 Object {text: "apprendre firebase"}
+    // snap added -Kiq9dbBaNIoi4j1PNgr Object {text: "finaliser l app"}
+    // snap added -Kiq9dbCfd0_PcLaq4ny Object {text: "connecter React a firebase"}
+
+
+  </code></pre></div><div class="section"><h2>Ramener firebase dans notre app</h2><li>on pourrait utiliser dans les componenet firebase, mais il est preferable de garder nos compo le plus lean and clean possible</li><li>Donc redux va se charger de ca. les reducer semble etre une bonne idee, mais le reducer doit etre des fonction pures, c'est donc pas possible de faire du DB en pure..</li><li>Donc ce sont les actions qui vont faire le boulot et semble t il qu'il nous faudrat redux-thunk, qui permet de retourner une fn au lieu d un obj. il faut le mettre dans le store.</li><li>Puisqu on a de besoin d attendre le data, on a besoin d 'async , donc un objet ne fait pas le boulot.</li><pre><code>
+
+    var store = redux.createStore(reducer, initialState, redux.compose(
+      redux.applyMiddleware(thunk),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
+    ));
+
+
+  </code></pre></div></div><!--fin--><script type="text/javascript" src="app.js?47e0c77f79479eeccc59"></script></body></html>

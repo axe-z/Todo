@@ -21,7 +21,7 @@ export let TodoList = React.createClass({
         <p className="vide">|<span className="titre">000</span>Rien a completer pour le moment<span className="titre">000</span>| </p>
       );
     }
- 
+
           return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
             return (
               <Todo key={todo.id} {...todo}/>

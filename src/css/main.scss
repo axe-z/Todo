@@ -485,3 +485,14 @@ padding: 3px;
 .titre {
   opacity: 0;
 }
+
+.image {
+  text-align: center;
+  max-width: 40%;
+  margin: 0 auto;
+  min-height: 500px;
+  background: url('../images/redux.png') no-repeat center center;
+  background-size: cover;
+  padding: 20px;
+  margin-bottom: 20px;
+}

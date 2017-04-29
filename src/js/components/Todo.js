@@ -42,5 +42,3 @@ let classNameNom = completed ? 'complet ' : '';
 //export default Todo
 //on donne a todo accet a dispatch pour qu il lance des actions
 export default connect()(Todo);
-
- 

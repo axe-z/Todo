@@ -62,7 +62,7 @@ TweenMax.to($('.notes'), 0.7, {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///
-///                        ///flex-box/////                                              ////
+///                        ///REACT/////                                              ////
 ///
 ///////////////////////////////////////////////////////////////////////////////////////////////
 import React from "react";
@@ -74,34 +74,48 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router'
 import _ from 'lodash';
 
 let { Provider } = require('react-redux');
-//import momentFr from './api/momentFr'; je l ai mis en bas
-
-//console.log(Provider)
-
-////APP  todo
-import moment from 'moment';
 import TodoApp from "./components/TodoApp"
-import AddTodo from "./components/AddTodo"
-import Todo from "./components/Todo"
-import TodoList from "./components/TodoList"
 
-import Search from "./components/Search"
+//-------------- pas besoin
+//import momentFr from './api/momentFr'; je l ai mis en bas
+//console.log(Provider)
+////APP  todo
+// import moment from 'moment';
+// import AddTodo from "./components/AddTodo"
+// import Todo from "./components/Todo"
+// import TodoList from "./components/TodoList"
+// import Search from "./components/Search"
+//--------------pas besoin
+
+///FIREBASE test
+//import './api/firebase/index';
+
+
 
 import * as actions from './actions/actions';
 let store = require('./store/confStore').configure();
 
 
+let TodoAPI = require('./api/TodoAPI');
+
 store.subscribe(() => {
-  console.log('Nouvel action', store.getState());
+  var state = store.getState();
+  console.log('New state', state);
+   TodoAPI.setTodos(state.todos);
 });
 
+ var initialTodos = TodoAPI.getTodos();
+// console.log(initialTodos)
+store.dispatch(actions.addTodos(initialTodos));
 
+
+//-------------- pas besoin
 //pour se faire du data
 //store.dispatch(actions.addTodo('Faire la vaisselle'))
 //store.dispatch(actions.addTodo('Fuire la souffleuse'))
 //store.dispatch(actions.setSearchText('vaisselle'))
 //store.dispatch(actions.toggleShowCompleted())
-
+//-------------- pas besoin
 
  render (
    <Provider store={store}>

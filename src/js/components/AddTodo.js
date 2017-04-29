@@ -13,7 +13,7 @@ export const AddTodo = React.createClass({
    let todoText = _.capitalize(this.refs.todoText.value);
    if(todoText && todoText.length >= 5 ){
   // this.props.onAddTodo(afaire)
-    dispatch(actions.addTodo(todoText))
+    dispatch(actions.startAddTodo(todoText))
      this.refs.todoText.value = '';
    } else if(todoText && todoText.length < 5){
 
