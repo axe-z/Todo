@@ -5,6 +5,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin"); ///optionnel p
 const path = require('path'); // pour wp-dev-server et autres..
 let webpack = require('webpack');
 
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
    entry: {
@@ -74,7 +75,8 @@ module.exports = {
       //  stats: "errors-only",   //dans la console, moins de truc, sauf erreurs si jamais...
         open: true    // va ouvris une fenetre , comme avec lite server.
      },
-      devtool: 'source-map',  //pour avoir seulement le vrai code et non pas le translater par babel.
+     devtool: 'source-map',  //pour avoir seulement le vrai code et non pas le translater par babel.
+
      plugins: [
        new HtmlWebpackPlugin({
          title: 'React',

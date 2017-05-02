@@ -122,6 +122,7 @@ store.dispatch(actions.startAddTodos())
 //store.dispatch(actions.toggleShowCompleted())
 //-------------- pas besoin
 
+  //=========================================================================== APP
  render (
    <Provider store={store}>
      <TodoApp />
@@ -134,7 +135,33 @@ store.dispatch(actions.startAddTodos())
 
 ,document.getElementById('MainInterface')
   )
+  //=========================================================================== APP
 
+
+  //===================================================== CLASS
+//
+// import * as classes from './api/classes/classes'
+// import * as autoBinding from './api/classes/autoBinding'
+// import Compo1 from './api/classes/Compo1'
+// import Compo2 from './api/classes/Compo2'
+//
+//
+//
+// // les chiffres, comme 99 doivent etre entre {}
+// render (
+//   <div>
+//     <Compo1 count={99}/>
+//     <Compo2 count={79}/>
+//   </div>
+//
+// ,document.getElementById('MainInterface')
+// )
+
+
+
+
+
+  //====================================================== CLASS
 
     //=================================================================================================================================
 //REDUX video 104 a 116 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -4,14 +4,15 @@
   "description": "Webpack 2 the lessons",
   "main": "build.js",
   "scripts": {
-    "test": "karma start",
+    "test": "NODE_ENV= test karma start",
     "startdev": "http-server",
     "dev": "lite-server --baseDir='build'",
     "wp": "webpack -d --watch",
     "wpprod": "webpack -p --watch",
     "webpack": "webpack-dev-server --watch --progress --colors",
     "wpserver": "webpack-dev-server --watch",
-    "start": "node server.js"
+    "build": "webpack",
+    "start": "npm run build && node server.js"
   },
   "author": "Brice Wilson",
   "license": "ISC",

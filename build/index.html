@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>React</title><link rel="icon" type="image/png" href="favicon.png"><link href="app.css?b2275ed93b0e69bbd333" rel="stylesheet"></head><body><!-- <h1>React</h1> --><div id="MainInterface"></div><div id="app"></div><div id="redux"></div><div class="notes"><div class="section"><h1 class="center">Notes sur REACT / REDUX / KARMA / FIREBASE</h1><h2>React..</h2><li>A la base on a juste un render a lancer pour avoir du jsx a l ecran</li><li>React.createClass vs extends React.Component voir lien ici : :::::<a href="http://stackoverflow.com/documentation/reactjs/6371/react-createclass-vs-extends-react-component#t=201611112010580710903"></a></li><li>seulement un container doit etre retourné.</li><li>componentDidMount est une maniere d 'avoir acces au debut '</li><li>lui suggere de faire une variable avec nos props et les pointer vers this. props. valeur et dans le jsx utiliser que le nom de variable, ca fait du sens...</li><li>Les refs: permet de mettre un hook, pour acceder a un tag, et en tirer sa valeur par exemple. refs est un objet, et on accede a ses nom par dot notation</li><li>le state est l objet qui produit un refresh, doit etre creer d'avance, les props eux se font initialiser dans le render , sont read only, et mis sur le component terminé, le state est dans le corps du component et est read , write. BRef un component ne modifie pas ses props, mais modifie continuellement son state.</li><li>On les creer avec getInitialState en createClass, en es6, juste l object dans le constructor.</li><li>il est possible de faire des raccorci, puisque props est une onbjet let p = this.props , ensuite p.nom == this.props.nom</li><li>deux function sont importante ici a present.getInitialState et getInitialState, function qui return un obj de key -> value</li></div><div class="section"><h2>Animer React avec Tweenmax</h2><li>Dans componentDidMount, on doit selectionner le node ( le contenant unique du component) node = ReactDOM findDOMNode (this)</li><li>pour animer qu un seul des children, on doit le trouver ndas l index de children. et en faire une variable.</li><li>Ensuite , meme chose qued habite avec GSAP</li></div><div class="section"><h2>Suite React, avoir plusieurs components</h2><li>Quand et ou diviser ses components, ici la form devrait etre ailleurs, le greeting, l autre.</li><li>il est suggere de faire une version statique bien divisee au depart et ensuite ajouter les fonctionnalites.</li><li>Decider si prop ou state: simplement se demander si une valeur sera modifiee, si oui, STATE, sinon, props.</li></div><div class="section"><h2>Envoyer du data d'un component externe au container</h2><li>Le container doit par exemple, sur un onchange, ou submit, appeler une function locale, cette fonction locale elle doit traiter le data une fois fait, doit la passer au container (on parle du component prinicipale) par un propriete, une prop.</li><li>dans l'externe on a ici par exemple une fonction onFormSubmit , cette fonction pour envoyer ca au container a l'aide d une props function</li><li>dans l'instance du component externe dans le container nomducomponentexterne on y met une props qui elle meme lance une function locale sur le contianer, qui change le state pour creer l ajustement , le rafraichissement.</li></div><div class="section"><h2>Presention component VS container component</h2><li>Un presentation component est un component sans state, il ne fait qu afficher ses props.</li><li>un container compo. lui a ses state et va avoir les methodes qui s en suivent</li><li>Si on contruit un objet pour les valeurs de state a changer, au lieu de faire des key value, on peut passer l object complet.</li></div><div class="section"><h2>division des components</h2><li>Il devient plus facile de lire les fichieers une fois separe. faire un folder component, ensuite , importer react dans les fichiers du meme nom que les component</li><li>des const doivent se faire exporter au debut sans default ou a la fin avec le default, et non pas au moment de sa creation avec default. default est un seul export par module</li></div><div class="section"><h2>Routing</h2><li>le contenant est le Router, dans lui des routes , et les route sont logique a l ecran, dans le main,si on veut garder, mais aller a une autre page qui demande a ce que main reste, on fait le lien entre les deux bout de main et y mettre /about. l autre props est component et appelle le nom du component que l on veut a ce path.</li><li>IndexRoute, est pour celui par defaut si on veut, si le hash n'est pas juste, mettons que je tape abOt au lieu d about, ca ira a l index route. Compliquer, mais si on avait que des route, le / ne chargerait rien, mais la il a un children , dans l indexroute. Donc le indexroute devient le par defaut... avec indexroute s appelait defaultroute.. ce qui etait plus clair</li><li>Link au lieu de a link, en majuscule le link, mais il est possible d'utiliser des a avec href de #/about , et ca fera le meme chemin. On utilise Link parce que nous avons la possibilite de stylyser specifiquement pour la page que l on veut.</li><li>Aussi avec actviveClass, on peut determiner le defaut, et le style.</li><li>Quand on utilise indexRoute, dans le router, sur le component en question, le lien du nav sera toujours actif avec Link, il faut utiliser indexLink</li></div><div class="section"><h2>Es6 promises</h2><li>Voici un leger rappel sur les promesses</li><pre><code>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>React</title><link rel="icon" type="image/png" href="favicon.png"><link href="app.css?57575b67ac74a5be4c65" rel="stylesheet"></head><body><!-- <h1>React</h1> --><div id="MainInterface"></div><div id="app"></div><div id="redux"></div><div class="notes"><div class="section"><h1 class="center">Notes sur REACT / REDUX / KARMA / FIREBASE</h1><h2>React..</h2><li>A la base on a juste un render a lancer pour avoir du jsx a l ecran</li><li>React.createClass vs extends React.Component voir lien ici : :::::<a href="http://stackoverflow.com/documentation/reactjs/6371/react-createclass-vs-extends-react-component#t=201611112010580710903"></a></li><li>seulement un container doit etre retourné.</li><li>componentDidMount est une maniere d 'avoir acces au debut '</li><li>lui suggere de faire une variable avec nos props et les pointer vers this. props. valeur et dans le jsx utiliser que le nom de variable, ca fait du sens...</li><li>Les refs: permet de mettre un hook, pour acceder a un tag, et en tirer sa valeur par exemple. refs est un objet, et on accede a ses nom par dot notation</li><li>le state est l objet qui produit un refresh, doit etre creer d'avance, les props eux se font initialiser dans le render , sont read only, et mis sur le component terminé, le state est dans le corps du component et est read , write. BRef un component ne modifie pas ses props, mais modifie continuellement son state.</li><li>On les creer avec getInitialState en createClass, en es6, juste l object dans le constructor.</li><li>il est possible de faire des raccorci, puisque props est une onbjet let p = this.props , ensuite p.nom == this.props.nom</li><li>deux function sont importante ici a present.getInitialState et getInitialState, function qui return un obj de key -> value</li></div><div class="section"><h2>Animer React avec Tweenmax</h2><li>Dans componentDidMount, on doit selectionner le node ( le contenant unique du component) node = ReactDOM findDOMNode (this)</li><li>pour animer qu un seul des children, on doit le trouver ndas l index de children. et en faire une variable.</li><li>Ensuite , meme chose qued habite avec GSAP</li></div><div class="section"><h2>Suite React, avoir plusieurs components</h2><li>Quand et ou diviser ses components, ici la form devrait etre ailleurs, le greeting, l autre.</li><li>il est suggere de faire une version statique bien divisee au depart et ensuite ajouter les fonctionnalites.</li><li>Decider si prop ou state: simplement se demander si une valeur sera modifiee, si oui, STATE, sinon, props.</li></div><div class="section"><h2>Envoyer du data d'un component externe au container</h2><li>Le container doit par exemple, sur un onchange, ou submit, appeler une function locale, cette fonction locale elle doit traiter le data une fois fait, doit la passer au container (on parle du component prinicipale) par un propriete, une prop.</li><li>dans l'externe on a ici par exemple une fonction onFormSubmit , cette fonction pour envoyer ca au container a l'aide d une props function</li><li>dans l'instance du component externe dans le container nomducomponentexterne on y met une props qui elle meme lance une function locale sur le contianer, qui change le state pour creer l ajustement , le rafraichissement.</li></div><div class="section"><h2>Presention component VS container component</h2><li>Un presentation component est un component sans state, il ne fait qu afficher ses props.</li><li>un container compo. lui a ses state et va avoir les methodes qui s en suivent</li><li>Si on contruit un objet pour les valeurs de state a changer, au lieu de faire des key value, on peut passer l object complet.</li></div><div class="section"><h2>division des components</h2><li>Il devient plus facile de lire les fichieers une fois separe. faire un folder component, ensuite , importer react dans les fichiers du meme nom que les component</li><li>des const doivent se faire exporter au debut sans default ou a la fin avec le default, et non pas au moment de sa creation avec default. default est un seul export par module</li></div><div class="section"><h2>Routing</h2><li>le contenant est le Router, dans lui des routes , et les route sont logique a l ecran, dans le main,si on veut garder, mais aller a une autre page qui demande a ce que main reste, on fait le lien entre les deux bout de main et y mettre /about. l autre props est component et appelle le nom du component que l on veut a ce path.</li><li>IndexRoute, est pour celui par defaut si on veut, si le hash n'est pas juste, mettons que je tape abOt au lieu d about, ca ira a l index route. Compliquer, mais si on avait que des route, le / ne chargerait rien, mais la il a un children , dans l indexroute. Donc le indexroute devient le par defaut... avec indexroute s appelait defaultroute.. ce qui etait plus clair</li><li>Link au lieu de a link, en majuscule le link, mais il est possible d'utiliser des a avec href de #/about , et ca fera le meme chemin. On utilise Link parce que nous avons la possibilite de stylyser specifiquement pour la page que l on veut.</li><li>Aussi avec actviveClass, on peut determiner le defaut, et le style.</li><li>Quand on utilise indexRoute, dans le router, sur le component en question, le lien du nav sera toujours actif avec Link, il faut utiliser indexLink</li></div><div class="section"><h2>Es6 promises</h2><li>Voici un leger rappel sur les promesses</li><pre><code>
 
      function addPromesse(a,b){
       return new Promise((res,rej) => {
@@ -1141,4 +1141,166 @@ console.log(newNoteRef.key) //sort le premier id
     ));
 
 
-  </code></pre></div></div><!--fin--><script type="text/javascript" src="app.js?b2275ed93b0e69bbd333"></script></body></html>
+  </code></pre></div><div class="section"><h2>Pour exporter sur heroku un version complete.</h2><li>Voir video 138, on doit refaire nos dev dependency pour que heroku aille acces a tout lui aussi, et nos versions.</li><li></li><pre><code>
+
+  important tout les dev-dependency , doivent aller dans dependency. tout sauf KARMA et mocha.
+
+Voir video 138,
+
+IL RESTE PLUSIEURS , ENVIRON 10 VIDEOS, SUR LA FIN DE TODO APP, MAIS EN GROS , LONG COURT ARRIVE A SA FIN
+  </code></pre></div><div class="section"><h2>ANNEXE - LES CLASS AVEC REACT</h2><li>On doit ajouter au child class le constructor et super, seulement si on ajouter un propriete de plus sinon on peut s'en passer....</li><pre><code>
+    class Person {
+    constructor (name ='defaultNom', age= 40){
+     this.name = name,
+     this.age = age
+      }
+      //on doit ici parce que like est pas dans le parent.
+    class child extends Person {
+      constructor (name, age,like){
+       super(name, age)  ///on ramene eu du parent
+       this.like = like // et initialise ca dans le child
+      }
+  </code></pre></div><div class="section"><h2>Create vs extends</h2><li>class, pu de virgule entre fn, pas de initial state, et props externe et proptypes aussi</li><li>L'avantage des class sera la vitesse, et les shigher order function qu on verra sous peu. Et bon, meme si c est de la marde, c'est l avenir ..</li><pre><code>
+
+
+//CREATE//CREATE//CREATE//CREATE//CREATE//CREATE
+const Compo1 = React.createClass({
+  getInitialState(){
+    return {
+      count : this.props.count
+    }
+  },
+  getDefaultProps(){
+    return {
+      count: 11
+    }
+  },
+  propTypes : {
+    count: React.PropTypes.number
+  },
+  componentDidMount(){
+    let node =  findDOMNode(this);  ///retourne tout le div.
+     TweenMax.from(node,2,{
+       opacity: 0,  x:  200,  scale: 3.5,
+       ease: Power4.easeInOut
+     })
+  },
+  render() {
+     let { count } = this.state;
+    return (
+    div className="millieu centrer">
+        h3>Compo1 avec Extends /h3>
+      p>Compteur est a { count } /p>
+     /div>
+    )
+  }
+});
+//CREATE//CREATE//CREATE//CREATE//CREATE
+
+///AVEC CLASS ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS
+
+    export default class Compo2 extends Component {
+      constructor (props){
+       super(props)
+         this.state = {
+          // count:  arguments[0].count   //ca marche
+          count:  props.count
+         }
+         console.log(arguments )
+      }
+      componentDidMount(){
+        let node =  findDOMNode(this);  ///retourne tout le div.
+         TweenMax.from(node,2,{
+           opacity: 0,  x:  200,  delay:1, scale: 4.2,
+           ease: Power4.easeInOut
+         })
+      }
+      render() {
+        console.log(this.props)
+        let { count } = this.state;
+        return (
+         div className="millieu centrer">
+             h3>Compo2 avec Extends /h3>
+           p>Compteur est a { count } /p>
+          /div>
+        );
+      }
+    }
+
+    Compo2.defaultProps = {
+      count : 50
+    }
+    Compo2.propTypes = {
+      count: React.PropTypes.number
+    }
+
+    ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS
+  </code></pre></div><div class="section"><h2>Le fucking binding.</h2><li>Uncaught TypeError: Cannot read property 'setState' of null, est un message qui doit allumer qu un binding est manquant, dans la function, le this est mouru</li><li>this.onClick.bind(this) dira, de garder le this qui est a l endroit de l appel, et pas a l endroit ou l action se passera.</li><li>CE probleme, se produit quand on appel un function plus haute avec le jsx html, le probleme ce produit pas si dans le jsx, au lieu d appeler un fonction, on faisait la function directement dans le { () => this.setSt.... }</li><li>Donc il faut faire attention au function qui sont des callback, comme onclick, onchange , en fait tout ce qui demande une interaction et s assurer un bon binding au component.</li><pre><code>
+    constructor (props){
+     super(props)
+       this.state = {
+        // count:  arguments[0].count   //ca marche
+        count:  props.count
+       }
+       //console.log(arguments )
+       this.onClick = this.onClick.bind(this)  //le faire d'avance
+    }
+
+  //ou
+   onClick={this.onClick.bind(this)}
+
+   // ou fait tout sur le button
+
+    className="submit2" onClick={() => {
+     this.setState({
+       count: this.state.count + 1
+     })
+   }}>Bouton deux
+
+  </code></pre></div><div class="section"><h2>Higher ordered functions currying apply ( map filter ...)</h2><li>voir fichier autobinding dans classes</li><li>apply, prend 2 args, le this si besoin, sinon und., et l arr qui suit</li><li>une higher order patern, doit 1. etre un function, 2. prend une function comme seul argument et 3. Retourne une fonction.</li><pre><code>
+
+    regle de higher order function :
+    1. etre un function,
+    2. prend une function comme seul argument
+    3. Retourne une fonction
+
+    function one(name, location){
+     console.log(name, location)
+    }
+
+    function two(){
+     console.log('args', arguments)
+     one.apply(undefined, arguments)
+    }
+
+    two('ben','mtl')
+    //apply
+    two.apply(undefined, ['jen', 'laval'])
+
+
+    ///DONC
+    let add = (a,b) => {
+      return  a + b;
+    }
+    let callAndLog = (fn) => {
+      return function () {
+        let response = fn.apply(undefined, arguments)
+        console.log('response est', response)
+        return response
+      }
+    }
+
+
+    let addAndLog = callAndLog(add)
+    addAndLog(44,-3) //response est 41
+    addAndLog(4 , 3) //response est 7
+
+
+    let square = (d) => {
+      return d * d
+   }
+    let squareAndLog = callAndLog(square)
+    squareAndLog(3) //response est 9
+  </code></pre></div><div class="section"><h2>Higher order components</h2><li>Un peu de la meme maniere qu un fonction high order.. on fait une function qui retourne un component, qui roule le compo2.</li><li>les props qu on passe count={79} dans app ne passent pas , si on ajoute pas : { ...props} dams le component</li><li>donc avec isAdmin, on faisant un check de condition on peut montrer ou pas une section.</li><li>Les fains sont pas clair, mais bon..</li><pre><code>
+
+  </code></pre></div></div><!--fin--><script type="text/javascript" src="app.js?57575b67ac74a5be4c65"></script></body></html>

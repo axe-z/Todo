@@ -1757,6 +1757,218 @@ console.log(newNoteRef.key) //sort le premier id
 </div>
 
 
+<div class="section">
+  <h2>Pour exporter sur heroku un version complete.</h2>
+  <li>Voir video 138, on doit refaire nos dev dependency pour que heroku aille acces a tout lui aussi, et nos versions.</li>
+  <li></li>
+  <pre><code>
+
+  important tout les dev-dependency , doivent aller dans dependency. tout sauf KARMA et mocha.
+
+Voir video 138,
+
+IL RESTE PLUSIEURS , ENVIRON 10 VIDEOS, SUR LA FIN DE TODO APP, MAIS EN GROS , LONG COURT ARRIVE A SA FIN
+  </code></pre>
+</div>
+
+
+<div class="section">
+  <h2>ANNEXE - LES CLASS AVEC REACT</h2>
+  <li>On doit ajouter au child class le constructor et super, seulement si on ajouter un propriete de plus sinon on peut s'en passer....</li>
+  <pre><code>
+    class Person {
+    constructor (name ='defaultNom', age= 40){
+     this.name = name,
+     this.age = age
+      }
+      //on doit ici parce que like est pas dans le parent.
+    class child extends Person {
+      constructor (name, age,like){
+       super(name, age)  ///on ramene eu du parent
+       this.like = like // et initialise ca dans le child
+      }
+  </code></pre>
+</div>
+
+
+<div class="section">
+  <h2>Create vs extends</h2>
+  <li>class, pu de virgule entre fn, pas de initial state, et props externe et proptypes aussi</li>
+  <li>L'avantage des class sera la vitesse, et les shigher order function qu on verra sous peu. Et bon, meme si c est de la marde, c'est l avenir .. </li>
+  <pre><code>
+
+
+//CREATE//CREATE//CREATE//CREATE//CREATE//CREATE
+const Compo1 = React.createClass({
+  getInitialState(){
+    return {
+      count : this.props.count
+    }
+  },
+  getDefaultProps(){
+    return {
+      count: 11
+    }
+  },
+  propTypes : {
+    count: React.PropTypes.number
+  },
+  componentDidMount(){
+    let node =  findDOMNode(this);  ///retourne tout le div.
+     TweenMax.from(node,2,{
+       opacity: 0,  x:  200,  scale: 3.5,
+       ease: Power4.easeInOut
+     })
+  },
+  render() {
+     let { count } = this.state;
+    return (
+    div className="millieu centrer">
+        h3>Compo1 avec Extends /h3>
+      p>Compteur est a { count } /p>
+     /div>
+    )
+  }
+});
+//CREATE//CREATE//CREATE//CREATE//CREATE
+
+///AVEC CLASS ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS
+
+    export default class Compo2 extends Component {
+      constructor (props){
+       super(props)
+         this.state = {
+          // count:  arguments[0].count   //ca marche
+          count:  props.count
+         }
+         console.log(arguments )
+      }
+      componentDidMount(){
+        let node =  findDOMNode(this);  ///retourne tout le div.
+         TweenMax.from(node,2,{
+           opacity: 0,  x:  200,  delay:1, scale: 4.2,
+           ease: Power4.easeInOut
+         })
+      }
+      render() {
+        console.log(this.props)
+        let { count } = this.state;
+        return (
+         div className="millieu centrer">
+             h3>Compo2 avec Extends /h3>
+           p>Compteur est a { count } /p>
+          /div>
+        );
+      }
+    }
+
+    Compo2.defaultProps = {
+      count : 50
+    }
+    Compo2.propTypes = {
+      count: React.PropTypes.number
+    }
+
+    ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS ///AVEC CLASS
+  </code></pre>
+</div>
+
+
+<div class="section">
+  <h2>Le fucking binding.</h2>
+  <li>Uncaught TypeError: Cannot read property 'setState' of null, est un message qui doit allumer qu un binding est manquant, dans la function, le this est mouru </li>
+  <li>this.onClick.bind(this) dira, de garder le this qui est a l endroit de l appel, et pas a l endroit ou l action se passera.  </li>
+  <li>CE probleme, se produit quand on appel un function plus haute avec le jsx html, le probleme ce produit pas si dans le jsx, au lieu d appeler un fonction, on faisait la function directement dans le { ()  => this.setSt.... }</li>
+  <li>Donc il faut faire attention au function qui sont des callback, comme onclick, onchange , en fait tout ce qui demande une interaction et s assurer un bon binding au component.</li>
+
+  <pre><code>
+    constructor (props){
+     super(props)
+       this.state = {
+        // count:  arguments[0].count   //ca marche
+        count:  props.count
+       }
+       //console.log(arguments )
+       this.onClick = this.onClick.bind(this)  //le faire d'avance
+    }
+
+  //ou
+   onClick={this.onClick.bind(this)}
+
+   // ou fait tout sur le button
+
+    className="submit2" onClick={() => {
+     this.setState({
+       count: this.state.count + 1
+     })
+   }}>Bouton deux
+
+  </code></pre>
+</div>
+
+
+<div class="section">
+  <h2>Higher ordered functions currying apply ( map filter ...)</h2>
+  <li>voir fichier autobinding dans classes</li>
+  <li>apply, prend 2 args, le this si besoin, sinon und., et l arr qui suit</li>
+  <li>une higher order patern, doit 1. etre un function, 2. prend une function comme seul argument et 3. Retourne une fonction.</li>
+  <pre><code>
+
+    regle de higher order function :
+    1. etre un function,
+    2. prend une function comme seul argument
+    3. Retourne une fonction
+
+    function one(name, location){
+     console.log(name, location)
+    }
+
+    function two(){
+     console.log('args', arguments)
+     one.apply(undefined, arguments)
+    }
+
+    two('ben','mtl')
+    //apply
+    two.apply(undefined, ['jen', 'laval'])
+
+
+    ///DONC
+    let add = (a,b) => {
+      return  a + b;
+    }
+    let callAndLog = (fn) => {
+      return function () {
+        let response = fn.apply(undefined, arguments)
+        console.log('response est', response)
+        return response
+      }
+    }
+
+
+    let addAndLog = callAndLog(add)
+    addAndLog(44,-3) //response est 41
+    addAndLog(4 , 3) //response est 7
+
+
+    let square = (d) => {
+      return d * d
+   }
+    let squareAndLog = callAndLog(square)
+    squareAndLog(3) //response est 9
+  </code></pre>
+</div>
+
+<div class="section">
+  <h2>Higher order components</h2>
+  <li>Un peu de la meme maniere qu un fonction high order.. on fait une function qui retourne un component, qui roule le compo2. </li>
+  <li>les props qu on passe count={79} dans app ne passent pas , si on ajoute pas : { ...props} dams le component</li>
+  <li>donc avec isAdmin, on faisant un check de condition on peut montrer ou pas une section.</li>
+  <li>Les fains sont pas clair, mais bon.. </li>
+  <pre><code>
+
+  </code></pre>
+</div>
 
 
 
